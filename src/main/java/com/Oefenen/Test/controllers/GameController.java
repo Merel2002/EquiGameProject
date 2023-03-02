@@ -5,11 +5,18 @@ import com.Oefenen.Test.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("/api")
 public class GameController {
     @Autowired
     private GameService gameService;
 
+    //om te testen
+    @GetMapping("/games")
+    public List<Game> getAllGames(){ return gameService.getAllGames(); }
 
     @PostMapping("/addGame")
     public Game addGame(@RequestBody Game game){ return gameService.createGame(game); }

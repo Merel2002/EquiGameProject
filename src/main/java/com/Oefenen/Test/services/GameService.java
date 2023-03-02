@@ -5,6 +5,7 @@ import com.Oefenen.Test.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -12,6 +13,8 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
+    //testen
+    public List<Game> getAllGames(){ return gameRepository.findAll(); }
     public Game createGame(Game game) { return gameRepository.save(game); }
 
     public Game getGameById(int id)
@@ -28,7 +31,7 @@ public class GameService {
         {
             oldGame = optionalGame.get();
             oldGame.setName(game.getName());
-            //oldGame.setDescribtion(game.getDescribtion());
+            oldGame.setDescription(game.getDescription());
             //oldGame.setDate(game.getDate());
             //oldGame.setType(game.getType());
             gameRepository.save(oldGame);
