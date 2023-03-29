@@ -32,8 +32,8 @@ public class GameService {
             oldGame = optionalGame.get();
             oldGame.setName(game.getName());
             oldGame.setDescription(game.getDescription());
-            //oldGame.setDate(game.getDate());
-            //oldGame.setType(game.getType());
+            oldGame.setDate(game.getDate());
+            oldGame.setLocation(game.getLocation());
             gameRepository.save(oldGame);
         }
         else
