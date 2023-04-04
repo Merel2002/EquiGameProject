@@ -87,7 +87,7 @@ public class GameServiceTest {
         Game expected = gameService.createGame(game1);
 
         //assert
-        Assertions.assertNotEquals(expected, game1);
+        Assertions.assertEquals(expected, game1);
     }
 
     @Test
