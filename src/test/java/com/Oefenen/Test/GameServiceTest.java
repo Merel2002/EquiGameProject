@@ -15,11 +15,12 @@ import java.util.List;
 @SpringBootTest
 public class GameServiceTest {
     private GameService gameService;
+    private MockGameRepo mockGameRepo;
     List<Game> gameList;
 
     @BeforeEach
     void setup() {
-        MockGameRepo mockGameRepo = new MockGameRepo();
+        this.mockGameRepo = new MockGameRepo();
         this.gameService = new GameService(mockGameRepo);
 
         gameList = new ArrayList<>();
