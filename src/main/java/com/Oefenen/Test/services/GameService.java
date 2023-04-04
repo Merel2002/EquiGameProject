@@ -10,8 +10,10 @@ import java.util.Optional;
 
 @Service
 public class GameService {
+
+    final private GameRepository gameRepository;
     @Autowired
-    private GameRepository gameRepository;
+    public GameService(GameRepository gameRepository){ this.gameRepository = gameRepository; }
 
     //testen
     public List<Game> getAllGames(){ return gameRepository.findAll(); }
