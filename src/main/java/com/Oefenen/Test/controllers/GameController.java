@@ -14,10 +14,6 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-
-
-
-
     //om te testen
     @GetMapping("/games")
     public List<Game> getAllGames(){ return gameService.getAllGames(); }
