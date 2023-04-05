@@ -38,6 +38,5 @@ public class Game {
 
     //private Organisation organisation;
     //private String type
-    //private LocalDate date;
 
 }

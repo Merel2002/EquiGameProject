@@ -11,8 +11,10 @@ import java.util.Optional;
 
 @Service
 public class RiderService {
-    @Autowired
     private RiderRepository riderRepository;
+
+    @Autowired
+    public RiderService(RiderRepository riderRepository){ this.riderRepository = riderRepository; }
 
     public List<Rider> getAllRiders(){ return riderRepository.findAll();}
 

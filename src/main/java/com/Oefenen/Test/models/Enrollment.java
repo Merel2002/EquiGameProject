@@ -18,7 +18,10 @@ public class Enrollment {
     private int id;
     @OneToOne
     private Game game;
+
     @OneToOne
-    private Combination combination;
+    private Rider Rider;
+    //@OneToOne
+    //private Combination combination;
 
 }

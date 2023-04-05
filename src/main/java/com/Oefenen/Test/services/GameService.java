@@ -15,7 +15,6 @@ public class GameService {
     @Autowired
     public GameService(GameRepository gameRepository){ this.gameRepository = gameRepository; }
 
-    //testen
     public List<Game> getAllGames(){ return gameRepository.findAll(); }
     public Game createGame(Game game) { return gameRepository.save(game); }
 
