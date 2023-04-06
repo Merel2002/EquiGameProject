@@ -25,7 +25,7 @@ public class HorseServiceTest {
 
         horseList = new ArrayList<>();
 
-        //mock game 1
+        //mock horse 1
         Horse horse1 = new Horse();
 
         horse1.setId(1);
@@ -34,7 +34,7 @@ public class HorseServiceTest {
 
         horseList.add(horse1);
 
-        //mock game 2
+        //mock horse 2
         Horse horse2 = new Horse();
 
         horse2.setId(2);
