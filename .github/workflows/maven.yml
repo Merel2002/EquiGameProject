@@ -31,7 +31,7 @@ jobs:
          npm install -g newman-reporter-htmlextra
          
       - name: Run Postman collections
-        run: newman run Game.postman_collection.json
+        run: newman run src/test/Game.postman_collection.json
          
          
         
