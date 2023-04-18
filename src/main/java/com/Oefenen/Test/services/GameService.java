@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class GameService {
 
-    final private GameRepository gameRepository;
+    final GameRepository gameRepository;
     @Autowired
     public GameService(GameRepository gameRepository){ this.gameRepository = gameRepository; }
 
