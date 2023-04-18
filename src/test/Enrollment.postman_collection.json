@@ -151,7 +151,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":2,\r\n    \"game\":{\r\n                \"id\":5,\r\n                \"name\" : \"Game_2\",\r\n                \"description\" : \"TestGame 2\",\r\n                \"date\" : \"2019-09-09\",\r\n                \"location\" : \"testlocation 2\"\r\n            },\r\n    \"rider\":{\r\n                \"id\":2,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse updateee\"\r\n            }\r\n}",
+					"raw": "{\r\n    \"id\":1,\r\n    \"game\":{\r\n                \"id\":2,\r\n                \"name\" : \"Game_2\",\r\n                \"description\" : \"TestGame 2\",\r\n                \"date\" : \"2019-09-09\",\r\n                \"location\" : \"testlocation 2\"\r\n            },\r\n    \"rider\":{\r\n                \"id\":2,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse updateee\"\r\n            }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
