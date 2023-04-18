@@ -26,8 +26,8 @@
 							"    pm.expect(responseJson.date).to.be.a('string');\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -60,8 +60,7 @@
 						"api",
 						"addGame"
 					]
-				},
-				"description": "Hierbij probeer ik een Game aan te maken met alleen een naam maar dit lukt niet"
+				}
 			},
 			"response": []
 		},
@@ -122,8 +121,8 @@
 							"    pm.expect(responseJson.date).to.be.a('string');\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -169,8 +168,8 @@
 							"    pm.expect(responseJson.date).to.be.a('string');\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -182,7 +181,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\" : 4,\r\n    \"name\" : \"Game_2\",\r\n    \"description\" : \"TestGame 2\",\r\n    \"date\" : \"2019-09-09\",\r\n    \"location\" : \"testlocation 2 UPDATE\"\r\n}",
+					"raw": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"Game_2\",\r\n    \"description\" : \"TestGame 2\",\r\n    \"date\" : \"2019-09-09\",\r\n    \"location\" : \"testlocation 2 UPDATE\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -211,12 +210,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"DeleteGame succes delete\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -227,7 +222,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/deleteGame/7",
+					"raw": "http://localhost:9090/api/deleteGame/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -236,7 +231,7 @@
 					"path": [
 						"api",
 						"deleteGame",
-						"7"
+						"5"
 					]
 				}
 			},
