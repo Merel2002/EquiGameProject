@@ -12,5 +12,27 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          
+          # create JAR file with maven and run the package
       - name: Create the JAR file with Maven
         run: mvn package
+        
+        
+      # Install Node.js 
+      - name: set up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      # Install newman
+      - name: Install newman
+        run: | 
+         npm install -g newman
+         npm install -g newman-reporter-htmlextra
+         
+      - name: Run Postman collections
+        run: newman run Game.postman_collection.json
+         
+         
+        
+        
