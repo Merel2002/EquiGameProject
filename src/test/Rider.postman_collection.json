@@ -202,10 +202,9 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"DeleteRider succes delete\", function(){\r",
+							"pm.test(\"DeleteRider succes Delete\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"\r",
 							"\r",
 							"pm.test(\"Response time is less than 100\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
@@ -219,7 +218,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/deleteRider/4",
+					"raw": "http://localhost:9090/api/deleteRider/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -228,7 +227,7 @@
 					"path": [
 						"api",
 						"deleteRider",
-						"4"
+						"1"
 					]
 				}
 			},

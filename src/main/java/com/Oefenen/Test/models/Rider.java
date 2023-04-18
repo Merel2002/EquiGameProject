@@ -18,4 +18,9 @@ public class Rider{
     private String firstname;
     private String lastname;
 
+    public Rider(String _first, String _last){
+        this.firstname = _first;
+        this.lastname = _last;
+    }
+
 }

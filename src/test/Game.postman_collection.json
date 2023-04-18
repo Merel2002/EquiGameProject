@@ -210,6 +210,10 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"pm.test(\"DeleteGame succes delete\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
 							"pm.test(\"Response time is less than 200\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});"
@@ -222,7 +226,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/deleteGame/5",
+					"raw": "http://localhost:9090/api/deleteGame/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -231,7 +235,7 @@
 					"path": [
 						"api",
 						"deleteGame",
-						"5"
+						"1"
 					]
 				}
 			},

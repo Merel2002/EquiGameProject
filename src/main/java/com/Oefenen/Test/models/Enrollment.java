@@ -24,4 +24,9 @@ public class Enrollment {
     //@OneToOne
     //private Combination combination;
 
+    public Enrollment(Game game, Rider rider){
+        this.game = game;
+        this.rider = rider;
+    }
+
 }
