@@ -20,7 +20,7 @@ public class Enrollment {
     private Game game;
 
     @OneToOne
-    private Rider Rider;
+    private Rider rider;
     //@OneToOne
     //private Combination combination;
 

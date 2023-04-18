@@ -26,6 +26,6 @@ public class EnrollmentController {
     @PutMapping("/updateEnrollment")
     public Enrollment updateEnrollment(@RequestBody Enrollment enrollment){ return enrollmentService.updateEnrollment(enrollment); }
 
-    @DeleteMapping("/enrollment/{id}")
+    @DeleteMapping("/deleteEnrollment/{id}")
     public String deleteEnrollmentById(@PathVariable int id){ return enrollmentService.deleteEnrollmentById(id); }
 }

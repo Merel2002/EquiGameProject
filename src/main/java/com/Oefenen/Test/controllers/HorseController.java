@@ -26,6 +26,6 @@ public class HorseController {
     @PutMapping("/updateHorse")
     public Horse updateHorse(@RequestBody Horse horse){ return horseService.updateHorse(horse); }
 
-    @DeleteMapping("/horse/{id}")
+    @DeleteMapping("/deleteHorse/{id}")
     public String deleteHorseById(@PathVariable int id){ return horseService.deleteHorseById(id); }
 }

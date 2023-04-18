@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("/api")
 public class RiderController {
     @Autowired
     private RiderService riderService;
@@ -26,6 +28,6 @@ public class RiderController {
     @PutMapping("/updateRider")
     public Rider updateRider(@RequestBody Rider rider){ return riderService.updateRider(rider); }
 
-    @DeleteMapping("/rider/{id}")
+    @DeleteMapping("/deleteRider/{id}")
     public String deleteRiderById(@PathVariable int id){ return riderService.deleteRiderById(id); }
 }

@@ -27,6 +27,6 @@ public class GameController {
     @PutMapping("/updateGame")
     public Game updateGame(@RequestBody Game game){ return gameService.updateGame(game); }
 
-    @DeleteMapping("/game/{id}")
+    @DeleteMapping("/deleteGame/{id}")
     public String deleteGameById(@PathVariable int id){ return gameService.deleteGameById(id); }
 }

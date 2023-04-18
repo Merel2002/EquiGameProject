@@ -27,6 +27,6 @@ public class CombinationController {
     @PutMapping("/updateCombinations")
     public Combination updateCombination(@RequestBody Combination combinations){ return combinationService.updateCombination(combinations); }
 
-    @DeleteMapping("/combination/{id}")
+    @DeleteMapping("/deleteCombination/{id}")
     public String deleteCombinationById(@PathVariable int id){ return combinationService.deleteCombinationById(id); }
 }
