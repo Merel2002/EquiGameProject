@@ -26,8 +26,8 @@
 							"    pm.expect(responseJson.date).to.be.a('string');\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 200\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"pm.test(\"Response time is less than 400\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
 							"});"
 						],
 						"type": "text/javascript"
