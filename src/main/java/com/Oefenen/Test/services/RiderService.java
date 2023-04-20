@@ -15,10 +15,12 @@ import java.util.Optional;
 @Service
 public class RiderService {
     private RiderRepository riderRepository;
-    private RiderConverter riderConverter;
+    private RiderConverter riderConverter = new RiderConverter();
 
     @Autowired
-    public RiderService(RiderRepository riderRepository){ this.riderRepository = riderRepository; }
+    public RiderService(RiderRepository riderRepository){
+        this.riderRepository = riderRepository;
+    }
 
     public List<Rider> getAllRiders(){ return riderRepository.findAll();}
 
