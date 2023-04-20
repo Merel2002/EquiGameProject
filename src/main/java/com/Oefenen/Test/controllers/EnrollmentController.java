@@ -5,6 +5,7 @@ import com.Oefenen.Test.services.EnrollmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -16,6 +17,32 @@ public class EnrollmentController {
 
     @GetMapping("/enrollments")
     public List<Enrollment> getAllEnrollments(){ return enrollmentService.getAllEnrollments(); }
+
+    @GetMapping("/enrollments/user/{id}")
+    public List<Enrollment> getEnrollmentsByUserId(@PathVariable int id){
+        List<Enrollment> enrollments = enrollmentService.getAllEnrollments();
+        List<Enrollment> enrollmentsByUserId = new ArrayList<>();
+
+        for(int i = 0; i < enrollments.size(); i++){
+            if(enrollments.get(i).getRider().getId() == id){
+                enrollmentsByUserId.add(enrollments.get(i));
+            }
+        }
+        return enrollmentsByUserId;
+    }
+
+    @GetMapping("/enrollments/game/{id}")
+    public List<Enrollment> getEnrollmentsByGameId(@PathVariable int id){
+        List<Enrollment> enrollments = enrollmentService.getAllEnrollments();
+        List<Enrollment> enrollmentsByGameId = new ArrayList<>();
+
+        for(int i = 0; i < enrollments.size(); i++){
+            if(enrollments.get(i).getGame().getId() == id){
+                enrollmentsByGameId.add(enrollments.get(i));
+            }
+        }
+        return enrollmentsByGameId;
+    }
 
     @PostMapping("/addEnrollment")
     public Enrollment addEnrollment(@RequestBody Enrollment enrollment){ return enrollmentService.createEnrollment(enrollment); }

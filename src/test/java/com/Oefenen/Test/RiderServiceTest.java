@@ -1,6 +1,7 @@
 package com.Oefenen.Test;
 
 import com.Oefenen.Test.mock.MockRiderRepo;
+import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.Oefenen.Test.models.Rider;
 import com.Oefenen.Test.services.RiderService;
 import org.junit.jupiter.api.Assertions;
@@ -66,33 +67,35 @@ public class RiderServiceTest {
     @Test
     void createGameTest() {
         //assign
-        Rider rider = new Rider();
+        RiderDTO riderDTO = new RiderDTO();
 
-        rider.setId(1);
-        rider.setFirstname("Henk");
-        rider.setLastname("Janssen");
+        riderDTO.setId(1);
+        riderDTO.setFirstname("Henk");
+        riderDTO.setLastname("Janssen");
+
+        boolean expected = true;
 
         //act
-        Rider expected = riderService.createRider(rider);
+        boolean riderCreated = riderService.createRider(riderDTO);
 
         //assert
-        Assertions.assertEquals(expected, rider);
+        Assertions.assertEquals(expected, riderCreated);
     }
 
     @Test
     void getGameByIdTest() {
         //assign
-        Rider rider = new Rider();
+        RiderDTO riderDTO = new RiderDTO();
 
-        rider.setId(1);
-        rider.setFirstname("Henk");
-        rider.setLastname("Janssen");
+        riderDTO.setId(1);
+        riderDTO.setFirstname("Henk");
+        riderDTO.setLastname("Janssen");
 
         //act
-        Rider expected = riderService.getRiderById(rider.getId());
+        RiderDTO expected = riderService.getRiderById(riderDTO.getId());
 
         //assert
-        Assertions.assertEquals(expected, rider);
+        Assertions.assertEquals(expected, riderDTO);
     }
 
     @Test
