@@ -1,5 +1,6 @@
 package com.Oefenen.Test.controllers;
 
+import com.Oefenen.Test.models.DTO.CreateRiderDTO;
 import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.Oefenen.Test.services.RiderService;
 import com.Oefenen.Test.services.ValidationService;
@@ -26,7 +27,7 @@ public class RiderController {
     }
 
     @PostMapping("/addRider")
-    public boolean addRider(@RequestBody RiderDTO riderDTO){
+    public boolean addRider(@RequestBody CreateRiderDTO riderDTO){
         boolean valid1 = false;
         boolean valid2 = false;
         valid1 = validationService.stringValidator(riderDTO.getFirstname(), 1, 30);

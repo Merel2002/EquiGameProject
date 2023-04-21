@@ -1,6 +1,7 @@
 package com.Oefenen.Test;
 
 import com.Oefenen.Test.mock.MockRiderRepo;
+import com.Oefenen.Test.models.DTO.CreateRiderDTO;
 import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.Oefenen.Test.models.Rider;
 import com.Oefenen.Test.services.RiderService;
@@ -66,11 +67,10 @@ public class RiderServiceTest {
     }
 
     @Test
-    void createGameTest() {
+    void createRiderTest() {
         //assign
-        RiderDTO riderDTO = new RiderDTO();
+        CreateRiderDTO riderDTO = new CreateRiderDTO();
 
-        riderDTO.setId(1);
         riderDTO.setFirstname("Henk");
         riderDTO.setLastname("Janssen");
 

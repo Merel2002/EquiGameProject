@@ -1,6 +1,8 @@
 package com.Oefenen.Test;
 
 import com.Oefenen.Test.mock.MockGameRepo;
+import com.Oefenen.Test.models.DTO.GameDTO;
+import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.Oefenen.Test.models.Game;
 import com.Oefenen.Test.services.GameService;
 import org.junit.jupiter.api.Assertions;
@@ -53,7 +55,7 @@ public class GameServiceTest {
     @Test
     void getAllGamesTest(){
         //assign
-        List<Game> gamelist1;
+        List<GameDTO> gamelist1;
 
         //act
         gamelist1 = gameService.getAllGames();
@@ -75,25 +77,26 @@ public class GameServiceTest {
     @Test
     void createGameTest(){
         //assign
-        Game game1 = new Game();
+        GameDTO game1 = new GameDTO();
 
-        game1.setId(1);
         game1.setName("Wedstrijd 1");
         game1.setDate(LocalDate.of(2024, 4, 4));
         game1.setLocation("Tilburg");
         game1.setDescription("Dit is een test wedstrijd");
 
+        boolean expected = true;
+
         //act
-        Game expected = gameService.createGame(game1);
+        boolean outcome = gameService.createGame(game1);
 
         //assert
-        Assertions.assertEquals(expected, game1);
+        Assertions.assertEquals(outcome, expected);
     }
 
     @Test
     void getGameByIdTest(){
         //assign
-        Game game1 = new Game();
+        GameDTO game1 = new GameDTO();
 
         game1.setId(1);
         game1.setName("Wedstrijd 1");
@@ -102,7 +105,7 @@ public class GameServiceTest {
         game1.setDescription("Dit is een test wedstrijd");
 
         //act
-        Game expected = gameService.getGameById(game1.getId());
+        GameDTO expected = gameService.getGameById(game1.getId());
 
         //assert
         Assertions.assertEquals(expected, game1);
@@ -110,8 +113,9 @@ public class GameServiceTest {
 
     @Test
     void updateGameTest(){
+
         //assign
-        Game gameUpdate = new Game();
+        GameDTO gameUpdate = new GameDTO();
 
         gameUpdate.setId(1);
         gameUpdate.setName("Wedstrijd 1 UPDATE");
@@ -119,19 +123,13 @@ public class GameServiceTest {
         gameUpdate.setLocation("Tilburg");
         gameUpdate.setDescription("Dit is een test wedstrijd");
 
-        Game gameOld = new Game();
-
-        gameOld.setId(1);
-        gameOld.setName("Wedstrijd 1");
-        gameOld.setDate(LocalDate.of(2024, 4, 4));
-        gameOld.setLocation("Tilburg");
-        gameOld.setDescription("Dit is een test wedstrijd");
+        boolean expected = true;
 
         //act
-        gameUpdate = gameService.updateGame(gameUpdate);
+        boolean outcome = gameService.updateGame(gameUpdate);
 
         //assert
-        Assertions.assertNotEquals(gameUpdate, gameOld);
+        Assertions.assertEquals(outcome, expected);
     }
 
     @Test

@@ -1,12 +1,11 @@
 package com.Oefenen.Test.services;
 
+import com.Oefenen.Test.models.DTO.CreateRiderDTO;
 import com.Oefenen.Test.models.DTO.RiderDTO;
-import com.Oefenen.Test.models.Game;
 import com.Oefenen.Test.models.Rider;
-import com.Oefenen.Test.models.RiderConverter;
+import com.Oefenen.Test.services.converters.RiderConverter;
 import com.Oefenen.Test.repositories.RiderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,8 +34,8 @@ public class RiderService {
         return riderDTOS;
     }
 
-    public boolean createRider(RiderDTO riderDTO) {
-        Rider rider = riderConverter.riderDTOToRider(riderDTO);
+    public boolean createRider(CreateRiderDTO riderDTO) {
+        Rider rider = riderConverter.createRiderDTOTORider(riderDTO);
         rider = riderRepository.save(rider);
         if(rider != null){
             return true;
