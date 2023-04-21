@@ -1,9 +1,6 @@
 package com.Oefenen.Test.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +13,7 @@ public class Enrollment {
     @Id
     @GeneratedValue
     private int id;
-    @OneToOne
+    @ManyToOne
     private Game game;
 
     @OneToOne

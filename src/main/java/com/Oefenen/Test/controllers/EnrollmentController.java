@@ -27,41 +27,15 @@ public class EnrollmentController {
     }
 
     @GetMapping("/enrollments/user/{id}")
-    public List<EnrollmentDTO> getEnrollmentsByUserId(@PathVariable int id){
-        boolean valid = false;
-        valid = validationService.intValidator(id, 0);
-
-        List<EnrollmentDTO> enrollmentsDTOS = enrollmentService.getAllEnrollments();
-        List<EnrollmentDTO> enrollmentsByUserId = new ArrayList<>();
-
-        if(valid){
-            for(int i = 0; i < enrollmentsDTOS.size(); i++){
-                if(enrollmentsDTOS.get(i).getRider().getId() == id){
-                    enrollmentsByUserId.add(enrollmentsDTOS.get(i));
-                }
-            }
-        }
-
-        return enrollmentsByUserId;
+    public ResponseEntity<List<EnrollmentDTO>> getEnrollmentsByRiderId(@PathVariable int id){
+        List<EnrollmentDTO> enrollmentDTOS = enrollmentService.getAllEnrollmentsByRiderId(id);
+        return ResponseEntity.ok(enrollmentDTOS);
     }
 
     @GetMapping("/enrollments/game/{id}")
-    public List<EnrollmentDTO> getEnrollmentsByGameId(@PathVariable int id){
-        boolean valid = false;
-        valid = validationService.intValidator(id, 0);
-
-        List<EnrollmentDTO> enrollmentsDTOS = enrollmentService.getAllEnrollments();
-        List<EnrollmentDTO> enrollmentsByUserId = new ArrayList<>();
-
-        if(valid){
-            for(int i = 0; i < enrollmentsDTOS.size(); i++){
-                if(enrollmentsDTOS.get(i).getGame().getId() == id){
-                    enrollmentsByUserId.add(enrollmentsDTOS.get(i));
-                }
-            }
-        }
-
-        return enrollmentsByUserId;
+    public ResponseEntity<List<EnrollmentDTO>> getEnrollmentsByGameId(@PathVariable int id){
+        List<EnrollmentDTO> enrollmentDTOS = enrollmentService.getAllEnrollmentsByGameId(id);
+        return ResponseEntity.ok(enrollmentDTOS);
     }
 
     @PostMapping("/addEnrollment")

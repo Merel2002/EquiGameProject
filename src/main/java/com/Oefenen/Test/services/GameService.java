@@ -4,6 +4,7 @@ import com.Oefenen.Test.models.DTO.GameDTO;
 import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.Oefenen.Test.models.Game;
 import com.Oefenen.Test.models.Rider;
+import com.Oefenen.Test.repositories.GameCustomRepository;
 import com.Oefenen.Test.repositories.GameRepository;
 import com.Oefenen.Test.services.converters.GameConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,10 @@ import java.util.Optional;
 @Service
 public class GameService {
 
-    final GameRepository gameRepository;
+    final GameCustomRepository gameRepository;
     private GameConverter gameConverter = new GameConverter();
     @Autowired
-    public GameService(GameRepository gameRepository){ this.gameRepository = gameRepository; }
+    public GameService(GameCustomRepository gameRepository){ this.gameRepository = gameRepository; }
 
     public List<GameDTO> getAllGames(){
         Iterable<Game> games = gameRepository.findAll();
@@ -42,6 +43,12 @@ public class GameService {
 
     public GameDTO getGameById(int id) {
         Game game = gameRepository.findById(id).orElse(null);
+
+        return gameConverter.gameToGameDTO(game);
+    }
+
+    public GameDTO getGameByName(String name) {
+        Game game = gameRepository.findByName(name);
 
         return gameConverter.gameToGameDTO(game);
     }

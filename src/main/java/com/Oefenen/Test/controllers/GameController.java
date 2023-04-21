@@ -53,6 +53,18 @@ public class GameController {
         return null;
     }
 
+    @GetMapping("/game/{name}")
+    public ResponseEntity<GameDTO> getGameByName(@PathVariable String name){
+        boolean valid = false;
+        valid = validationService.stringValidator(name, 0, 50);
+
+        if(valid){
+            GameDTO gamedto = gameService.getGameByName(name);
+            return ResponseEntity.ok(gamedto);
+        }
+        return null;
+    }
+
     @PutMapping("/updateGame")
     public boolean updateGame(@RequestBody GameDTO gameDTO){
         boolean valid[] = {false, false, false, false, false};

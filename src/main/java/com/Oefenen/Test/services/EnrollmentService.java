@@ -3,6 +3,7 @@ package com.Oefenen.Test.services;
 import com.Oefenen.Test.models.DTO.EnrollmentDTO;
 import com.Oefenen.Test.models.Enrollment;
 import com.Oefenen.Test.models.Game;
+import com.Oefenen.Test.repositories.EnrollmentCustomRepository;
 import com.Oefenen.Test.repositories.EnrollmentRepository;
 import com.Oefenen.Test.services.converters.EnrollmentConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,39 @@ import java.util.Optional;
 
 @Service
 public class EnrollmentService {
-    final private EnrollmentRepository enrollmentRepository;
+    final private EnrollmentCustomRepository enrollmentRepository;
     private EnrollmentConverter enrollmentConverter = new EnrollmentConverter();
     @Autowired
-    public EnrollmentService(EnrollmentRepository _enrollmentRepository){ this.enrollmentRepository = _enrollmentRepository; }
+    public EnrollmentService(EnrollmentCustomRepository _enrollmentRepository){ this.enrollmentRepository = _enrollmentRepository; }
 
     public boolean createEnrollment(EnrollmentDTO enrollmentDTO){
         Enrollment enrollment = enrollmentConverter.enrollmentDTOToEnrollment(enrollmentDTO);
         enrollment = enrollmentRepository.save(enrollment);
 
         return true;
+    }
+
+    public List<EnrollmentDTO> getAllEnrollmentsByGameId(int id){
+        Iterable<Enrollment> enrollments = enrollmentRepository.findAllByGame_Id(id);
+        List<EnrollmentDTO> enrollmentDTOS = new ArrayList<>();
+
+        for(Enrollment enrollment : enrollments){
+            EnrollmentDTO enrollmentDTO = enrollmentConverter.enrollmentToEnrollmentDTO(enrollment);
+            enrollmentDTOS.add(enrollmentDTO);
+        }
+
+        return enrollmentDTOS;
+    }
+    public List<EnrollmentDTO> getAllEnrollmentsByRiderId(int id){
+        Iterable<Enrollment> enrollments = enrollmentRepository.findAllByRider_Id(id);
+        List<EnrollmentDTO> enrollmentDTOS = new ArrayList<>();
+
+        for(Enrollment enrollment : enrollments){
+            EnrollmentDTO enrollmentDTO = enrollmentConverter.enrollmentToEnrollmentDTO(enrollment);
+            enrollmentDTOS.add(enrollmentDTO);
+        }
+
+        return enrollmentDTOS;
     }
 
     public List<EnrollmentDTO> getAllEnrollments(){

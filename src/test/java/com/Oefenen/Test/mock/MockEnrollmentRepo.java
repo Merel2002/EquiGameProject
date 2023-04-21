@@ -2,6 +2,7 @@ package com.Oefenen.Test.mock;
 
 import com.Oefenen.Test.models.Enrollment;
 import com.Oefenen.Test.models.Game;
+import com.Oefenen.Test.repositories.EnrollmentCustomRepository;
 import com.Oefenen.Test.repositories.EnrollmentRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class MockEnrollmentRepo implements EnrollmentRepository {
+public class MockEnrollmentRepo implements EnrollmentCustomRepository {
     public List<Enrollment> EnrollmentList;
 
     public MockEnrollmentRepo(){
@@ -177,6 +178,16 @@ public class MockEnrollmentRepo implements EnrollmentRepository {
 
     @Override
     public Page<Enrollment> findAll(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public List<Enrollment> findAllByGame_Id(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Enrollment> findAllByRider_Id(int id) {
         return null;
     }
 }

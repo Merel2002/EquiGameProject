@@ -1,6 +1,8 @@
 package com.Oefenen.Test.mock;
 
+import com.Oefenen.Test.models.DTO.GameDTO;
 import com.Oefenen.Test.models.Game;
+import com.Oefenen.Test.repositories.GameCustomRepository;
 import com.Oefenen.Test.repositories.GameRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -14,7 +16,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 
-public class MockGameRepo implements GameRepository {
+public class MockGameRepo implements GameCustomRepository {
 
     public List<Game> GameList;
 
@@ -180,6 +182,11 @@ public class MockGameRepo implements GameRepository {
 
     @Override
     public Page<Game> findAll(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public Game findByName(String name) {
         return null;
     }
 }
