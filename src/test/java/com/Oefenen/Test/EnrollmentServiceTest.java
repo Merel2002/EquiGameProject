@@ -190,7 +190,7 @@ public class EnrollmentServiceTest {
         boolean outcome = enrollmentService.updateEnrollment(enrollmentUpdate);
 
         //assert
-        Assertions.assertNotEquals(outcome, expected);
+        Assertions.assertEquals(outcome, expected);
     }
 
     @Test
