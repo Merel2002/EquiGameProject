@@ -17,6 +17,7 @@ import java.util.List;
 public class EnrollmentController {
     @Autowired
     private EnrollmentService enrollmentService;
+    @Autowired
     private ValidationService validationService;
 
     @GetMapping("/enrollments")

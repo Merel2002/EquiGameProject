@@ -16,6 +16,7 @@ import java.util.List;
 public class GameController {
     @Autowired
     private GameService gameService;
+    @Autowired
     private ValidationService validationService;
 
     @GetMapping("/games")
