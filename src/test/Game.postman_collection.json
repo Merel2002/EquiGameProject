@@ -116,7 +116,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/game/1",
+					"raw": "http://localhost:9090/api/gameid/1",
 					"protocol": "http",
 					"host": [
 						"localhost"

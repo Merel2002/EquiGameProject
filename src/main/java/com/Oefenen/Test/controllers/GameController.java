@@ -41,7 +41,7 @@ public class GameController {
         return validator;
     }
 
-    @GetMapping("/game/{id}")
+    @GetMapping("/gameid/{id}")
     public ResponseEntity<GameDTO> getGameById(@PathVariable int id){
         boolean valid = false;
         valid = validationService.intValidator(id, 0);
