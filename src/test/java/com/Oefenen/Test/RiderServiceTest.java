@@ -49,7 +49,7 @@ public class RiderServiceTest {
     @Test
     void getAllRidersTest() {
         //assign
-        List<Rider> riderList1;
+        List<RiderDTO> riderList1;
 
         //act
         riderList1 = riderService.getAllRiders();
@@ -101,24 +101,19 @@ public class RiderServiceTest {
     @Test
     void updateGameTest() {
         //assign
-        Rider riderUpdate = new Rider();
+        RiderDTO riderUpdate = new RiderDTO();
 
         riderUpdate.setId(1);
         riderUpdate.setFirstname("Henk Update");
         riderUpdate.setLastname("Janssen");
 
-
-        Rider riderOld = new Rider();
-
-        riderOld.setId(1);
-        riderOld.setFirstname("Henk");
-        riderOld.setLastname("Janssen");
+        boolean expected = true;
 
         //act
-        riderUpdate = riderService.updateRider(riderUpdate);
+        boolean outcome = riderService.updateRider(riderUpdate);
 
         //assert
-        Assertions.assertNotEquals(riderUpdate, riderOld);
+        Assertions.assertNotEquals(outcome, expected);
     }
 
     @Test

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,17 @@ public class RiderService {
         this.riderRepository = riderRepository;
     }
 
-    public List<Rider> getAllRiders(){ return riderRepository.findAll();}
+    //gets all the riders and turns them into dto's
+    public List<RiderDTO> getAllRiders(){
+        Iterable<Rider> riders = riderRepository.findAll();
+        List<RiderDTO> riderDTOS = new ArrayList<>();
+
+        for(Rider rider: riders){
+            riderDTOS.add(riderConverter.riderToRiderDTO(rider));
+        }
+
+        return riderDTOS;
+    }
 
     public boolean createRider(RiderDTO riderDTO) {
         Rider rider = riderConverter.riderDTOToRider(riderDTO);
@@ -39,25 +50,20 @@ public class RiderService {
         return riderConverter.riderToRiderDTO(rider);
     }
 
-    public Rider updateRider (Rider rider)
+    public boolean updateRider (RiderDTO riderDTO)
     {
-        Rider oldRider;
-        Optional<Rider> optionalRider = riderRepository.findById(rider.getId());
+        RiderDTO oldRider;
+        Optional<Rider> optionalRider = riderRepository.findById(riderDTO.getId());
 
         if(optionalRider.isPresent())
         {
-            oldRider = optionalRider.get();
-            oldRider.setFirstname(rider.getFirstname());
-            oldRider.setLastname(rider.getLastname());
+            oldRider = riderConverter.riderToRiderDTO(optionalRider.get());
 
-            riderRepository.save(oldRider);
-        }
-        else
-        {
-            return new Rider();
+            riderRepository.save(optionalRider.get());
+            return true;
         }
 
-        return oldRider;
+        return false;
     }
 
     public String deleteRiderById(int id){ riderRepository.deleteById(id); return "Rider got deleted."; }

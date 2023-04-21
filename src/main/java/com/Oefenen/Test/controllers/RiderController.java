@@ -1,9 +1,6 @@
 package com.Oefenen.Test.controllers;
 
 import com.Oefenen.Test.models.DTO.RiderDTO;
-import com.Oefenen.Test.models.Game;
-import com.Oefenen.Test.models.Rider;
-import com.Oefenen.Test.services.GameService;
 import com.Oefenen.Test.services.RiderService;
 import com.Oefenen.Test.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,22 +20,24 @@ public class RiderController {
     private ValidationService validationService;
 
     @GetMapping("/riders")
-    public List<Rider> getAllRiders(){ return riderService.getAllRiders(); }
+    public ResponseEntity<List<RiderDTO>> getAllRiders(){
+        List<RiderDTO> riderDTOS = riderService.getAllRiders();
+        return ResponseEntity.ok(riderDTOS);
+    }
 
     @PostMapping("/addRider")
-    public ResponseEntity<RiderDTO> addRider(@RequestBody RiderDTO riderDTO){
-        boolean valid = false;
-        valid = validationService.stringValidator(riderDTO.getFirstname(), 1, 30);
-        valid = validationService.stringValidator(riderDTO.getLastname(), 1, 50);
+    public boolean addRider(@RequestBody RiderDTO riderDTO){
+        boolean valid1 = false;
+        boolean valid2 = false;
+        valid1 = validationService.stringValidator(riderDTO.getFirstname(), 1, 30);
+        valid2 = validationService.stringValidator(riderDTO.getLastname(), 1, 50);
 
-        if(valid){
+        boolean valid = false;
+        if(valid1 && valid2){
             valid = riderService.createRider(riderDTO);
         }
 
-        if(valid){
-            return ResponseEntity.status(HttpStatus.CREATED).body(null);
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        return valid;
     }
 
     @GetMapping("/rider/{id}")
@@ -53,7 +52,21 @@ public class RiderController {
     }
 
     @PutMapping("/updateRider")
-    public Rider updateRider(@RequestBody Rider rider){ return riderService.updateRider(rider); }
+    public boolean updateRider(@RequestBody RiderDTO riderDTO){
+        boolean valid1 = false;
+        boolean valid2 = false;
+        boolean valid3 = false;
+        valid1 = validationService.intValidator(riderDTO.getId(), 0);
+        valid2 = validationService.stringValidator(riderDTO.getFirstname(), 1, 30);
+        valid3 = validationService.stringValidator(riderDTO.getLastname(), 1, 50);
+
+        boolean valid = false;
+        if(valid1 && valid2 && valid3){
+            valid = riderService.updateRider(riderDTO);
+        }
+
+        return valid;
+    }
 
     @DeleteMapping("/deleteRider/{id}")
     public String deleteRiderById(@PathVariable int id){
