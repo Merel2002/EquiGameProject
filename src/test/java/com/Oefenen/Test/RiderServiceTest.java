@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -113,7 +114,7 @@ public class RiderServiceTest {
         boolean outcome = riderService.updateRider(riderUpdate);
 
         //assert
-        Assertions.assertNotEquals(outcome, expected);
+        Assertions.assertEquals(outcome, expected);
     }
 
     @Test
