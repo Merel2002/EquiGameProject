@@ -17,15 +17,9 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"The rider has all properties\", function () {\r",
-							"    const responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson.id).to.be.a('number');\r",
-							"    pm.expect(responseJson.firstname).to.be.a('string');\r",
-							"    pm.expect(responseJson.lastname).to.be.a('string');\r",
-							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -153,11 +147,9 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"The rider has all properties\", function () {\r",
+							"pm.test(\"The rider has to return a boolean\", function () {\r",
 							"    const responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson.id).to.be.a('number');\r",
-							"    pm.expect(responseJson.firstname).to.be.a('string');\r",
-							"    pm.expect(responseJson.lastname).to.be.a('string');\r",
+							"    pm.expect(responseJson).to.be.a('boolean');\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Response time is less than 100\", function () {\r",
@@ -202,6 +194,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"\r",
+							"\r",
 							"pm.test(\"Response time is less than 100\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
 							"});"

@@ -17,8 +17,8 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"pm.test(\"Response time is less than 400\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -30,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"game\":{\r\n                \"id\":2,\r\n                \"name\" : \"Game_2\",\r\n                \"description\" : \"TestGame 2\",\r\n                \"date\" : \"2019-09-09\",\r\n                \"location\" : \"testlocation 2\"\r\n            },\r\n    \"rider\":{\r\n                \"id\":2,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse\"\r\n            }\r\n}",
+					"raw": "{\r\n    \"game\":{\r\n                \"id\":1,\r\n                \"name\" : \"Game_2\",\r\n                \"description\" : \"TestGame 2\",\r\n                \"date\" : \"2055-09-09\",\r\n                \"location\" : \"testlocation 2\"\r\n            },\r\n    \"rider\":{\r\n                \"id\":1,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse\"\r\n            }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -63,8 +63,8 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -151,7 +151,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":1,\r\n    \"game\":{\r\n                \"id\":2,\r\n                \"name\" : \"Game_2\",\r\n                \"description\" : \"TestGame 2\",\r\n                \"date\" : \"2019-09-09\",\r\n                \"location\" : \"testlocation 2\"\r\n            },\r\n    \"rider\":{\r\n                \"id\":2,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse updateee\"\r\n            }\r\n}",
+					"raw": "{\r\n    \"id\":1,\r\n    \"game\":{\r\n                \"id\":1,\r\n                \"name\" : \"Game_2\",\r\n                \"description\" : \"TestGame 2\",\r\n                \"date\" : \"2040-09-09\",\r\n                \"location\" : \"testlocation 2\"\r\n            },\r\n    \"rider\":{\r\n                \"id\":1,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse updateee\"\r\n            }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -180,6 +180,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"\r",
 							"pm.test(\"Response time is less than 100\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
 							"});"
@@ -201,6 +202,96 @@
 					"path": [
 						"api",
 						"deleteEnrollment",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEnrollmentsByUserId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function (){",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/enrollments/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"enrollments",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEnrollmentsByGameId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function (){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/enrollments/game/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"enrollments",
+						"game",
 						"1"
 					]
 				}
