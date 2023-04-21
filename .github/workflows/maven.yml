@@ -13,13 +13,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           
-          # create JAR file with maven and run the package
+        # create JAR file with maven and run the package
       - name: Create the JAR file with Maven
         run: mvn package
         
         
       # Install Node.js 
-      - name: set up node
+      - name: Install Node.js
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
@@ -32,9 +32,10 @@ jobs:
          
       - name: Start applicatie
         run: nohup mvn spring-boot:run > /dev/null 2>&1 &
-      - name: ff wachten
+      - name: Wait 10 seconds so the application is ready
         run: sleep 10
          
+      - name: API Testen
       - name: Run Postman collections game
         run: newman run src/test/Game.postman_collection.json
       - name: Run Postman collections rider
