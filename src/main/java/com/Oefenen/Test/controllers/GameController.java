@@ -53,6 +53,7 @@ public class GameController {
         return null;
     }
 
+
     @GetMapping("/game/{name}")
     public ResponseEntity<GameDTO> getGameByName(@PathVariable String name){
         boolean valid = false;
