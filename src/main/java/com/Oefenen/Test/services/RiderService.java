@@ -51,13 +51,10 @@ public class RiderService {
 
     public boolean updateRider (RiderDTO riderDTO)
     {
-        RiderDTO oldRider;
         Optional<Rider> optionalRider = riderRepository.findById(riderDTO.getId());
 
         if(optionalRider.isPresent())
         {
-            oldRider = riderConverter.riderToRiderDTO(optionalRider.get());
-
             riderRepository.save(optionalRider.get());
             return true;
         }

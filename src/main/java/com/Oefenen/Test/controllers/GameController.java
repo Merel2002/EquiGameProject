@@ -1,8 +1,7 @@
 package com.Oefenen.Test.controllers;
 
 import com.Oefenen.Test.models.DTO.GameDTO;
-import com.Oefenen.Test.models.DTO.RiderDTO;
-import com.Oefenen.Test.models.Game;
+
 import com.Oefenen.Test.services.GameService;
 import com.Oefenen.Test.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;

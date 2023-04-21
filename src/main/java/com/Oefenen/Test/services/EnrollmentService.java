@@ -1,47 +1,59 @@
 package com.Oefenen.Test.services;
 
+import com.Oefenen.Test.models.DTO.EnrollmentDTO;
 import com.Oefenen.Test.models.Enrollment;
 import com.Oefenen.Test.models.Game;
 import com.Oefenen.Test.repositories.EnrollmentRepository;
+import com.Oefenen.Test.services.converters.EnrollmentConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EnrollmentService {
     final private EnrollmentRepository enrollmentRepository;
+    private EnrollmentConverter enrollmentConverter = new EnrollmentConverter();
     @Autowired
     public EnrollmentService(EnrollmentRepository _enrollmentRepository){ this.enrollmentRepository = _enrollmentRepository; }
 
-    public Enrollment createEnrollment(Enrollment enrollment){
-        enrollmentRepository.save(enrollment);
-        return enrollment;
+    public boolean createEnrollment(EnrollmentDTO enrollmentDTO){
+        Enrollment enrollment = enrollmentConverter.enrollmentDTOToEnrollment(enrollmentDTO);
+        enrollment = enrollmentRepository.save(enrollment);
+
+        return true;
     }
 
-    public List<Enrollment> getAllEnrollments(){ return enrollmentRepository.findAll(); }
+    public List<EnrollmentDTO> getAllEnrollments(){
+        Iterable<Enrollment> enrollments = enrollmentRepository.findAll();
+        List<EnrollmentDTO> enrollmentDTOS = new ArrayList<>();
 
-    public Enrollment getEnrollmentById(int id){ return enrollmentRepository.findById(id).orElse(null); }
+        for(Enrollment enrollment : enrollments){
+            EnrollmentDTO enrollmentDTO = enrollmentConverter.enrollmentToEnrollmentDTO(enrollment);
+            enrollmentDTOS.add(enrollmentDTO);
+        }
 
-    public Enrollment updateEnrollment(Enrollment enrollment){
-        Enrollment oldEnrollment;
-        Optional<Enrollment> optionalEnrollment = enrollmentRepository.findById(enrollment.getId());
+        return enrollmentDTOS;
+    }
+
+    public EnrollmentDTO getEnrollmentById(int id){
+        Enrollment enrollment = enrollmentRepository.findById(id).orElse(null);
+
+        return enrollmentConverter.enrollmentToEnrollmentDTO(enrollment);
+    }
+
+    public boolean updateEnrollment(EnrollmentDTO enrollmentDTO){
+        Optional<Enrollment> optionalEnrollment = enrollmentRepository.findById(enrollmentDTO.getId());
 
         if(optionalEnrollment.isPresent())
         {
-            oldEnrollment = optionalEnrollment.get();
-            oldEnrollment.setGame(enrollment.getGame());
-            oldEnrollment.setRider(enrollment.getRider());
-            //oldEnrollment.setCombination(enrollment.getCombination());
-            enrollmentRepository.save(oldEnrollment);
-        }
-        else
-        {
-            return new Enrollment();
+            enrollmentRepository.save(optionalEnrollment.get());
+            return true;
         }
 
-        return oldEnrollment;
+        return false;
     }
 
     public String deleteEnrollmentById(int id){

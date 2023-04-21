@@ -1,5 +1,8 @@
 package com.Oefenen.Test;
 
+import com.Oefenen.Test.models.DTO.EnrollmentDTO;
+import com.Oefenen.Test.models.DTO.GameDTO;
+import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.Oefenen.Test.models.Enrollment;
 import com.Oefenen.Test.models.Game;
 import com.Oefenen.Test.models.Rider;
@@ -72,7 +75,7 @@ public class EnrollmentServiceTest {
     @Test
     void getAllEnrollmentsTest(){
         //assign
-        List<Enrollment> enrollmentList1;
+        List<EnrollmentDTO> enrollmentList1;
 
         //act
         enrollmentList1 = enrollmentService.getAllEnrollments();
@@ -91,14 +94,14 @@ public class EnrollmentServiceTest {
     void createEnrollmentTest(){
         //assign
         //mock rider 1
-        Rider rider1 = new Rider();
+        RiderDTO rider1 = new RiderDTO();
 
         rider1.setId(1);
         rider1.setFirstname("Henk");
         rider1.setLastname("Janssen");
 
         //mock game 1
-        Game game1 = new Game();
+        GameDTO game1 = new GameDTO();
 
         game1.setId(1);
         game1.setName("Wedstrijd 1");
@@ -107,31 +110,32 @@ public class EnrollmentServiceTest {
         game1.setDescription("Dit is een test wedstrijd");
 
         //mock enrollment 1
-        Enrollment enrollment1 = new Enrollment();
+        EnrollmentDTO enrollment1 = new EnrollmentDTO();
 
         enrollment1.setId(1);
         enrollment1.setGame(game1);
         enrollment1.setRider(rider1);
 
+        boolean expected = true;
         //act
-        Enrollment expected = enrollmentService.createEnrollment(enrollment1);
+        boolean outcome = enrollmentService.createEnrollment(enrollment1);
 
         //assert
-        Assertions.assertEquals(expected, enrollment1);
+        Assertions.assertEquals(outcome, expected);
     }
 
     @Test
     void getEnrollmentByIdTest(){
         //assign
         //mock rider 1
-        Rider rider1 = new Rider();
+        RiderDTO rider1 = new RiderDTO();
 
         rider1.setId(1);
         rider1.setFirstname("Henk");
         rider1.setLastname("Janssen");
 
         //mock game 1
-        Game game1 = new Game();
+        GameDTO game1 = new GameDTO();
 
         game1.setId(1);
         game1.setName("Wedstrijd 1");
@@ -140,7 +144,7 @@ public class EnrollmentServiceTest {
         game1.setDescription("Dit is een test wedstrijd");
 
         //mock enrollment 1
-        Enrollment enrollment1 = new Enrollment();
+        EnrollmentDTO enrollment1 = new EnrollmentDTO();
 
         enrollment1.setId(1);
         enrollment1.setGame(game1);
@@ -148,7 +152,7 @@ public class EnrollmentServiceTest {
 
 
         //act
-        Enrollment expected = enrollmentService.getEnrollmentById(enrollment1.getId());
+        EnrollmentDTO expected = enrollmentService.getEnrollmentById(enrollment1.getId());
 
         //assert
         Assertions.assertEquals(expected, enrollment1);
@@ -158,14 +162,14 @@ public class EnrollmentServiceTest {
     void updateEnrollmentTest(){
         //assign
         //mock rider update
-        Rider riderUpdate = new Rider();
+        RiderDTO riderUpdate = new RiderDTO();
 
         riderUpdate.setId(1);
         riderUpdate.setFirstname("Henk Update");
         riderUpdate.setLastname("Janssen");
 
         //mock game update
-        Game gameUpdate = new Game();
+        GameDTO gameUpdate = new GameDTO();
 
         gameUpdate.setId(1);
         gameUpdate.setName("Wedstrijd 1 Update");
@@ -174,40 +178,19 @@ public class EnrollmentServiceTest {
         gameUpdate.setDescription("Dit is een test wedstrijd");
 
         //mock enrollment update
-        Enrollment enrollmentUpdate = new Enrollment();
+        EnrollmentDTO enrollmentUpdate = new EnrollmentDTO();
 
         enrollmentUpdate.setId(1);
         enrollmentUpdate.setGame(gameUpdate);
         enrollmentUpdate.setRider(riderUpdate);
 
-        //mock rider old
-        Rider riderOld = new Rider();
-
-        riderOld.setId(1);
-        riderOld.setFirstname("Henk");
-        riderOld.setLastname("Janssen");
-
-        //mock game old
-        Game gameOld = new Game();
-
-        gameOld.setId(1);
-        gameOld.setName("Wedstrijd 1");
-        gameOld.setDate(LocalDate.of(2024, 4, 4));
-        gameOld.setLocation("Tilburg");
-        gameOld.setDescription("Dit is een test wedstrijd");
-
-        //mock enrollment old
-        Enrollment enrollmentOld = new Enrollment();
-
-        enrollmentOld.setId(1);
-        enrollmentOld.setGame(gameOld);
-        enrollmentOld.setRider(riderOld);
+        boolean expected = true;
 
         //act
-        enrollmentUpdate = enrollmentService.updateEnrollment(enrollmentUpdate);
+        boolean outcome = enrollmentService.updateEnrollment(enrollmentUpdate);
 
         //assert
-        Assertions.assertNotEquals(enrollmentOld, enrollmentUpdate);
+        Assertions.assertNotEquals(outcome, expected);
     }
 
     @Test
