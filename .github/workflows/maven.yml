@@ -17,6 +17,10 @@ jobs:
       - name: Create the JAR file with Maven
         run: mvn package
         
+        #Run Unit tests
+      - name: Run Unit Test
+        run: mvn test
+        
         
       # Install Node.js 
       - name: Install Node.js
