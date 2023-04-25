@@ -52,6 +52,17 @@ public class RiderController {
         return null;
     }
 
+    @GetMapping("/riderName/{name}")
+    public RiderDTO getRiderByName(@PathVariable String name){
+        boolean valid = false;
+        valid = validationService.stringValidator(name, 0, 50);
+
+        if(valid){
+            return riderService.getRiderByName(name);
+        }
+        return null;
+    }
+
     @PutMapping("/updateRider")
     public boolean updateRider(@RequestBody RiderDTO riderDTO){
         boolean valid1 = false;

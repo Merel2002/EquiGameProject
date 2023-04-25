@@ -1,6 +1,7 @@
 package com.Oefenen.Test.mock;
 
 import com.Oefenen.Test.models.Rider;
+import com.Oefenen.Test.repositories.RiderCustomRepository;
 import com.Oefenen.Test.repositories.RiderRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class MockRiderRepo implements RiderRepository {
+public class MockRiderRepo implements RiderCustomRepository {
 
     public List<Rider> RiderList;
 
@@ -177,6 +178,11 @@ public class MockRiderRepo implements RiderRepository {
 
     @Override
     public Page<Rider> findAll(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public Rider findByFirstname(String name) {
         return null;
     }
 }

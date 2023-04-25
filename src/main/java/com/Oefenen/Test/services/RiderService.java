@@ -1,8 +1,11 @@
 package com.Oefenen.Test.services;
 
 import com.Oefenen.Test.models.DTO.CreateRiderDTO;
+import com.Oefenen.Test.models.DTO.GameDTO;
 import com.Oefenen.Test.models.DTO.RiderDTO;
+import com.Oefenen.Test.models.Game;
 import com.Oefenen.Test.models.Rider;
+import com.Oefenen.Test.repositories.RiderCustomRepository;
 import com.Oefenen.Test.services.converters.RiderConverter;
 import com.Oefenen.Test.repositories.RiderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +17,11 @@ import java.util.Optional;
 
 @Service
 public class RiderService {
-    private RiderRepository riderRepository;
+    private RiderCustomRepository riderRepository;
     private RiderConverter riderConverter = new RiderConverter();
 
     @Autowired
-    public RiderService(RiderRepository riderRepository){
+    public RiderService(RiderCustomRepository riderRepository){
         this.riderRepository = riderRepository;
     }
 
@@ -48,6 +51,12 @@ public class RiderService {
 
         return riderConverter.riderToRiderDTO(rider);
     }
+    public RiderDTO getRiderByName(String name) {
+        Rider rider = riderRepository.findByFirstname(name);
+
+        return riderConverter.riderToRiderDTO(rider);
+    }
+
 
     public boolean updateRider (RiderDTO riderDTO)
     {
