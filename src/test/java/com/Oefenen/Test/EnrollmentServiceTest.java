@@ -1,4 +1,4 @@
-package com.Oefenen.Test.unitTests;
+package com.Oefenen.Test;
 
 import com.Oefenen.Test.models.DTO.EnrollmentDTO;
 import com.Oefenen.Test.models.DTO.GameDTO;
@@ -10,6 +10,7 @@ import com.Oefenen.Test.services.EnrollmentService;
 import com.Oefenen.Test.mock.MockEnrollmentRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
+@Tag("UnitTest")
 public class EnrollmentServiceTest {
     private EnrollmentService enrollmentService;
     private MockEnrollmentRepo mockEnrollmentRepo;

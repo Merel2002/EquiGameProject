@@ -1,4 +1,4 @@
-package com.Oefenen.Test.unitTests;
+package com.Oefenen.Test;
 
 import com.Oefenen.Test.mock.MockGameRepo;
 import com.Oefenen.Test.models.DTO.GameDTO;
@@ -7,6 +7,7 @@ import com.Oefenen.Test.models.Game;
 import com.Oefenen.Test.services.GameService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
+@Tag("UnitTest")
 public class GameServiceTest {
     private GameService gameService;
     private MockGameRepo mockGameRepo;

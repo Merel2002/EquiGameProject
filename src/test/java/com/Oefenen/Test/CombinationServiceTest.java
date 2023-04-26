@@ -1,10 +1,11 @@
-package com.Oefenen.Test.unitTests;
+package com.Oefenen.Test;
 
 import com.Oefenen.Test.mock.MockCombinationRepo;
 import com.Oefenen.Test.models.*;
 import com.Oefenen.Test.services.CombinationService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
+@Tag("UnitTest")
 public class CombinationServiceTest {
     private CombinationService combinationService;
     private MockCombinationRepo mockCombinationRepo;

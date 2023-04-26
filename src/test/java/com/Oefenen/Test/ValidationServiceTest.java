@@ -1,10 +1,11 @@
-package com.Oefenen.Test.unitTests;
+package com.Oefenen.Test;
 
 import com.Oefenen.Test.models.DTO.GameDTO;
 import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.Oefenen.Test.services.ValidationService;
 import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 
 @SpringBootTest
+@Tag("UnitTest")
 public class ValidationServiceTest {
     @Autowired
     private ValidationService validationService;
