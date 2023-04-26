@@ -84,7 +84,7 @@ public class RiderServiceTest {
     }
 
     @Test
-    void getGameByIdTest() {
+    void getRiderByIdTest() {
         //assign
         RiderDTO riderDTO = new RiderDTO();
 
@@ -98,6 +98,23 @@ public class RiderServiceTest {
         //assert
         Assertions.assertEquals(expected, riderDTO);
     }
+
+    @Test
+    void getRiderByNameTest() {
+        //assign
+        RiderDTO riderDTO = new RiderDTO();
+
+        riderDTO.setId(1);
+        riderDTO.setFirstname("Henk");
+        riderDTO.setLastname("Janssen");
+
+        //act
+        RiderDTO expected = riderService.getRiderByName(riderDTO.getFirstname());
+
+        //assert
+        Assertions.assertEquals(expected, riderDTO);
+    }
+
 
     @Test
     void updateGameTest() {

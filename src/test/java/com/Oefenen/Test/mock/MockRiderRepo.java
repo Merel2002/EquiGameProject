@@ -183,6 +183,12 @@ public class MockRiderRepo implements RiderCustomRepository {
 
     @Override
     public Rider findByFirstname(String name) {
-        return null;
+        Rider rider = null;
+        for(Rider value: RiderList){
+            if(value.getFirstname() == name){
+                rider = value;
+            }
+        }
+        return rider;
     }
 }

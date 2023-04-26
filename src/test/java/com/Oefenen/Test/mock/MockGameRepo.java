@@ -187,6 +187,13 @@ public class MockGameRepo implements GameCustomRepository {
 
     @Override
     public Game findByName(String name) {
-        return null;
+        Game game = null;
+        for (Game value : GameList) {
+            if (value.getName() == name) {
+                game = value;
+                return game;
+            }
+        }
+        return game;
     }
 }

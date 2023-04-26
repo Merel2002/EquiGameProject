@@ -112,6 +112,24 @@ public class GameServiceTest {
     }
 
     @Test
+    void getGameByNameTest(){
+        //assign
+        GameDTO game1 = new GameDTO();
+
+        game1.setId(1);
+        game1.setName("Wedstrijd 1");
+        game1.setDate(LocalDate.of(2024, 4, 4));
+        game1.setLocation("Tilburg");
+        game1.setDescription("Dit is een test wedstrijd");
+
+        //act
+        GameDTO expected = gameService.getGameByName(game1.getName());
+
+        //assert
+        Assertions.assertEquals(expected, game1);
+    }
+
+    @Test
     void updateGameTest(){
 
         //assign
