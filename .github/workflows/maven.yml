@@ -15,11 +15,11 @@ jobs:
           
         # create JAR file with maven and run the package
       - name: Create the JAR file with Maven
-        run: mvn package
+        run: mvn package -DskipTest
         
         #Run Unit tests
       - name: Run Unit Test
-        run: mvn test
+        run: mvn test -Dgroups="unitTests"
         
         
       # Install Node.js 
