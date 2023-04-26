@@ -19,7 +19,7 @@ jobs:
         
         #Run Unit tests
       - name: Run Unit Test
-        run: mvn test -Dgroups="unitTests"
+        run: mvn test -Dgroups="UnitTest"
         
         
       # Install Node.js 
