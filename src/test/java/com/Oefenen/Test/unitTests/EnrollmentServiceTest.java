@@ -1,4 +1,4 @@
-package com.Oefenen.Test;
+package com.Oefenen.Test.unitTests;
 
 import com.Oefenen.Test.models.DTO.EnrollmentDTO;
 import com.Oefenen.Test.models.DTO.GameDTO;
@@ -11,11 +11,13 @@ import com.Oefenen.Test.mock.MockEnrollmentRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@SpringBootTest
 public class EnrollmentServiceTest {
     private EnrollmentService enrollmentService;
     private MockEnrollmentRepo mockEnrollmentRepo;

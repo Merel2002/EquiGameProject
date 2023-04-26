@@ -1,4 +1,4 @@
-package com.Oefenen.Test;
+package com.Oefenen.Test.unitTests;
 
 import com.Oefenen.Test.mock.MockGameRepo;
 import com.Oefenen.Test.models.DTO.GameDTO;

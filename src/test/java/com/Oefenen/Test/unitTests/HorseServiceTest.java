@@ -1,4 +1,4 @@
-package com.Oefenen.Test;
+package com.Oefenen.Test.unitTests;
 
 import com.Oefenen.Test.mock.MockHorseRepo;
 import com.Oefenen.Test.models.Horse;

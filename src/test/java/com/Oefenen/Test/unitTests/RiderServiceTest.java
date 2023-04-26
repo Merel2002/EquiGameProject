@@ -1,4 +1,4 @@
-package com.Oefenen.Test;
+package com.Oefenen.Test.unitTests;
 
 import com.Oefenen.Test.mock.MockRiderRepo;
 import com.Oefenen.Test.models.DTO.CreateRiderDTO;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
