@@ -14,5 +14,6 @@ public class CreateRiderDTO {
     private String firstname;
     private String lastname;
 
+
 }
 

@@ -21,6 +21,11 @@ public class EnrollmentDTO {
 
     @OneToOne
     private RiderDTO rider;
+
+    public EnrollmentDTO(GameDTO gameDTO, RiderDTO riderDTO) {
+        this.game = gameDTO;
+        this.rider = riderDTO;
+    }
     //@OneToOne
     //private Combination combination;
 
