@@ -16,6 +16,7 @@ public class GameDTO {
     @Id
     @GeneratedValue
     private int id;
+
     @Column(name = "name")
     public String name;
 
@@ -35,7 +36,5 @@ public class GameDTO {
         this.setLocation(_location);
     }
 
-    //private Organisation organisation;
-    //private String type
 
 }

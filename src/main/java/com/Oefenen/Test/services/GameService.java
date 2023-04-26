@@ -17,8 +17,10 @@ import java.util.Optional;
 @Service
 public class GameService {
 
+    @Autowired
     final GameCustomRepository gameRepository;
     private GameConverter gameConverter = new GameConverter();
+    @Autowired
     public GameService(GameCustomRepository gameRepository){ this.gameRepository = gameRepository; }
 
     public List<GameDTO> getAllGames(){
