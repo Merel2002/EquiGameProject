@@ -91,6 +91,30 @@ public class EnrollmentServiceTest {
     }
 
     @Test
+    void getAllEnrollmentsByGameIdTest(){
+        //assign
+        List<EnrollmentDTO> enrollmentDTOS;
+
+        //act
+        enrollmentDTOS = enrollmentService.getAllEnrollmentsByGameId(1);
+
+        //assert
+        Assertions.assertEquals(enrollmentDTOS.size(), 2);
+    }
+
+    @Test
+    void getAllEnrollmentsByRiderIdTest(){
+        //assign
+        List<EnrollmentDTO> enrollmentDTOS;
+
+        //act
+        enrollmentDTOS = enrollmentService.getAllEnrollmentsByRiderId(1);
+
+        //assert
+        Assertions.assertEquals(enrollmentDTOS.size(), 1);
+    }
+
+    @Test
     void createEnrollmentTest(){
         //assign
         //mock rider 1

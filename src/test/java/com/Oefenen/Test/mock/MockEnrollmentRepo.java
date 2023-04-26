@@ -1,5 +1,6 @@
 package com.Oefenen.Test.mock;
 
+import com.Oefenen.Test.models.DTO.EnrollmentDTO;
 import com.Oefenen.Test.models.Enrollment;
 import com.Oefenen.Test.models.Game;
 import com.Oefenen.Test.repositories.EnrollmentCustomRepository;
@@ -183,11 +184,23 @@ public class MockEnrollmentRepo implements EnrollmentCustomRepository {
 
     @Override
     public List<Enrollment> findAllByGame_Id(int id) {
-        return null;
+        List<Enrollment> enrollments = new ArrayList<>();
+        for (Enrollment value : EnrollmentList) {
+            if (value.getGame().getId() == id) {
+                enrollments.add(value);
+            }
+        }
+        return enrollments;
     }
 
     @Override
     public List<Enrollment> findAllByRider_Id(int id) {
-        return null;
+        List<Enrollment> enrollments = new ArrayList<>();
+        for (Enrollment value : EnrollmentList) {
+            if (value.getRider().getId() == id) {
+                enrollments.add(value);
+            }
+        }
+        return enrollments;
     }
 }
