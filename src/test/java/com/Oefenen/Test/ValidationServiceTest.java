@@ -6,12 +6,14 @@ import com.Oefenen.Test.services.ValidationService;
 import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 
 @SpringBootTest
 public class ValidationServiceTest {
+    @Autowired
     private ValidationService validationService;
 
 
