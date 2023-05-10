@@ -1,4 +1,4 @@
-package com.Oefenen.Test.IntegrationTest;
+package com.Oefenen.Test;
 
 import com.Oefenen.Test.models.DTO.EnrollmentDTO;
 import com.Oefenen.Test.models.DTO.GameDTO;

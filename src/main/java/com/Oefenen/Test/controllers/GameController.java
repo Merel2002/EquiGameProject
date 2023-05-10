@@ -92,6 +92,6 @@ public class GameController {
         if(valid){
             return gameService.deleteGameById(id);
         }
-        return "Rider didn't got deleted.";
+        return "Game didn't got deleted.";
     }
 }

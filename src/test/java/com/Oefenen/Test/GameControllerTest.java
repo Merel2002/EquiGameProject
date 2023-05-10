@@ -1,8 +1,6 @@
-package com.Oefenen.Test.IntegrationTest;
+package com.Oefenen.Test;
 
-import com.Oefenen.Test.models.DTO.CreateRiderDTO;
 import com.Oefenen.Test.models.DTO.GameDTO;
-import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -26,27 +24,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Tag("IntegrationTest")
-public class RiderControllerTest {
+public class GameControllerTest {
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void getAllRidersTest()
+    public void getAllGamesTest()
     {
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .get("/api/riders")
+                            .get("/api/games")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
-                    .andReturn();
+                     .andReturn();
 
             String jsonResult = result.getResponse().getContentAsString();
-            List<RiderDTO> riderDTOS = new ObjectMapper().readValue(jsonResult, new TypeReference<List<RiderDTO>>(){});
-            for(RiderDTO value: riderDTOS){
-                Assertions.assertNotNull(value.getFirstname());
-                Assertions.assertNotNull(value.getLastname());
+            List<GameDTO> gameDTOS = new ObjectMapper().readValue(jsonResult, new TypeReference<List<GameDTO>>(){});
+            for(GameDTO value: gameDTOS){
+                Assertions.assertNotNull(value.getName());
                 Assertions.assertNotNull(value.getId());
+                Assertions.assertNotNull(value.getDate());
+                Assertions.assertNotNull(value.getLocation());
+                Assertions.assertNotNull(value.getDescription());
             }
 
         }catch (Exception ex){
@@ -54,10 +54,10 @@ public class RiderControllerTest {
     }
 
     @Test
-    public void getRiderByIdTest(){
+    public void getGameByIdTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/api/rider/{id}", 1)
+                            .get("/api/gameid/{id}", 1)
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -68,58 +68,63 @@ public class RiderControllerTest {
     }
 
     @Test
-    public void getRiderByNameTest(){
+    public void getGameByNameTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/api/riderName/{name}", "Henk")
+                            .get("/api/game/{name}", "Game1")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
-                    .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Henk"));
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Game1"));
         }catch(Exception ex){
 
         }
     }
 
     @Test
-    public void addRiderTest(){
+    public void addGameTest(){
         try {
-            mvc.perform(MockMvcRequestBuilders
-                            .post("/api/addRider")
-                            .content(asJsonString(new CreateRiderDTO("Henk", "Janssen")))
+            MvcResult result = mvc.perform(MockMvcRequestBuilders
+                            .post("/api/addGame")
+                            .content(asJsonString(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, -9))))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk());
-        } catch (Exception ex){
-
-        }
-    }
-
-    @Test
-    public void updateRiderTest(){
-        try {
-            mvc.perform(MockMvcRequestBuilders
-                            .put("/api/updateRider")
-                            .content(asJsonString(new RiderDTO(1,"Trudy", "Janssen")))
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk());
-        } catch (Exception ex){
-
-        }
-    }
-
-    @Test
-    public void deleteRiderTest(){
-        try {
-            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/api/deleteRider/{id}", 1))
-                    .andExpect(status().isAccepted())
+                    .andExpect(status().isOk())
                     .andReturn();
 
             String Jsonresult = result.getResponse().getContentAsString();
             String outcome = new ObjectMapper().readValue(Jsonresult, new TypeReference<String>(){});
             Assertions.assertEquals("true", outcome);
 
+        } catch (Exception ex){
+
+        }
+    }
+
+    @Test
+    public void updateGameTest(){
+        try {
+            mvc.perform(MockMvcRequestBuilders
+                            .put("/api/updateGame")
+                            .content(asJsonString(new GameDTO(1,"Springwedstrijd", "Testwedstrijd", LocalDate.of(2090, 9, -9), "Bavel")))
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
+        } catch (Exception ex){
+
+        }
+    }
+
+    @Test
+    public void deleteGameTest(){
+        try {
+            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/api/deleteGame/{id}", 1))
+                    .andExpect(status().isAccepted())
+                    .andReturn();
+
+            String Jsonresult = result.getResponse().getContentAsString();
+            String outcome = new ObjectMapper().readValue(Jsonresult, new TypeReference<String>(){});
+            Assertions.assertEquals("true", outcome);
         } catch (Exception ex){
 
         }
