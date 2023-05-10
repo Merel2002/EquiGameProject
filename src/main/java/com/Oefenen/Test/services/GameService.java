@@ -24,7 +24,7 @@ public class GameService {
     public GameService(GameCustomRepository gameRepository){ this.gameRepository = gameRepository; }
 
     public List<GameDTO> getAllGames(){
-        Iterable<Game> games = gameRepository.findAll();
+        Iterable<Game> games = gameRepository.findAllByOrderByDateAsc();
         List<GameDTO> gameDTOS = new ArrayList<>();
 
         for(Game game: games){

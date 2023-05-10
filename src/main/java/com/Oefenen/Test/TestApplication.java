@@ -30,8 +30,8 @@ public class TestApplication{
 	@Bean
 	CommandLineRunner run(GameRepository gameRepository, RiderRepository riderRepository, EnrollmentRepository enrollmentRepository){
 		return args -> {
-			Game game = new Game("Game1", "Test game", "locatie 1", LocalDate.of(2024, 9, 9));
-			Rider rider = new Rider("rider", "horse");
+			Game game = new Game("Indoor Breda", "Indoor Breda is een meerdaagse springwedstrijd in Breda", "Breda", LocalDate.of(2024, 9, 9));
+			Rider rider = new Rider("Maree", "Janssen");
 			gameRepository.save(game);
 			riderRepository.save(rider);
 			enrollmentRepository.save(new Enrollment(game, rider));
