@@ -199,6 +199,6 @@ public class MockGameRepo implements GameCustomRepository {
 
     @Override
     public List<Game> findAllByOrderByDateAsc() {
-        return null;
+        return GameList;
     }
 }

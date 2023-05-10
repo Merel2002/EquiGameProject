@@ -45,7 +45,7 @@ public class GameServiceTest {
 
         game2.setId(2);
         game2.setName("Wedstrijd 2");
-        game2.setDate(LocalDate.of(2024, 5, 4));
+        game2.setDate(LocalDate.of(2024, 3, 4));
         game2.setLocation("Tilburg");
         game2.setDescription("Dit is de 2e test wedstrijd");
 
@@ -71,7 +71,7 @@ public class GameServiceTest {
 
         Assertions.assertEquals(2, gamelist1.get(1).getId());
         Assertions.assertEquals("Wedstrijd 2", gamelist1.get(1).getName());
-        Assertions.assertEquals(LocalDate.of(2024, 5, 4), gamelist1.get(1).getDate());
+        Assertions.assertEquals(LocalDate.of(2024, 3, 4), gamelist1.get(1).getDate());
         Assertions.assertEquals("Tilburg", gamelist1.get(0).getLocation());
         Assertions.assertEquals("Dit is de 2e test wedstrijd", gamelist1.get(1).getDescription());
     }
