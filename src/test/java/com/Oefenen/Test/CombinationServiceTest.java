@@ -130,21 +130,21 @@ public class CombinationServiceTest {
     void getCombinationByIdTest(){
         //assign
         //mock rider 1
-        Rider rider1 = new Rider();
+        RiderDTO rider1 = new RiderDTO();
 
         rider1.setId(1);
         rider1.setFirstname("Henk");
         rider1.setLastname("Janssen");
 
         //mock horse 1
-        Horse horse1 = new Horse();
+        HorseDTO horse1 = new HorseDTO();
 
         horse1.setId(1);
         horse1.setName("Horse 1");
         horse1.setAge(LocalDate.of(2024, 4, 4));
 
         //mock combination 1
-        Combination combination1 = new Combination();
+        CombinationDTO combination1 = new CombinationDTO();
 
         combination1.setId(1);
         combination1.setUserID(1);

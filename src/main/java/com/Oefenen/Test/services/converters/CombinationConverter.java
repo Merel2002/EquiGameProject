@@ -16,7 +16,7 @@ public class CombinationConverter {
         combinationDTO.setId(combination.getId());
         combinationDTO.setHorse(horseConverter.horseToHorseDTO(combination.getHorse()));
         combinationDTO.setRider(riderConverter.riderToRiderDTO(combination.getRider()));
-        combinationDTO.setUserID(combinationDTO.getUserID());
+        combinationDTO.setUserID(combination.getUserID());
 
         return combinationDTO;
     }
