@@ -1,8 +1,8 @@
 package com.Oefenen.Test.mock;
 
 import com.Oefenen.Test.models.Combination;
-import com.Oefenen.Test.models.Enrollment;
-import com.Oefenen.Test.repositories.CombinationRepository;
+import com.Oefenen.Test.models.DTO.CombinationDTO;
+import com.Oefenen.Test.repositories.CombinationCustomRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class MockCombinationRepo implements CombinationRepository {
+public class MockCombinationRepo implements CombinationCustomRepository {
     public List<Combination> CombinationList;
 
     public MockCombinationRepo(){
@@ -176,6 +176,11 @@ public class MockCombinationRepo implements CombinationRepository {
 
     @Override
     public Page<Combination> findAll(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public List<Combination> findAllByUserID(int id) {
         return null;
     }
 }

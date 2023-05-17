@@ -1,6 +1,7 @@
 package com.Oefenen.Test;
 
 import com.Oefenen.Test.mock.MockHorseRepo;
+import com.Oefenen.Test.models.DTO.HorseDTO;
 import com.Oefenen.Test.models.Horse;
 import com.Oefenen.Test.services.HorseService;
 import org.junit.jupiter.api.Assertions;
@@ -51,7 +52,7 @@ public class HorseServiceTest {
     @Test
     void getAllHorsesTest(){
         //assign
-        List<Horse> horseList1;
+        List<HorseDTO> horseList1;
 
         //act
         horseList1 = horseService.getAllHorses();
@@ -69,30 +70,30 @@ public class HorseServiceTest {
     @Test
     void createHorseTest(){
         //assign
-        Horse horse1 = new Horse();
+        HorseDTO horse1 = new HorseDTO();
 
         horse1.setId(1);
         horse1.setName("Horse 1");
         horse1.setAge(LocalDate.of(2024, 4, 4));
 
         //act
-        Horse expected = horseService.createHorse(horse1);
+        boolean expected = horseService.createHorse(horse1);
 
         //assert
-        Assertions.assertEquals(expected, horse1);
+        Assertions.assertEquals(expected, true);
     }
 
     @Test
     void getHorseByIdTest(){
         //assign
-        Horse horse1 = new Horse();
+        HorseDTO horse1 = new HorseDTO();
 
         horse1.setId(1);
         horse1.setName("Horse 1");
         horse1.setAge(LocalDate.of(2024, 4, 4));
 
         //act
-        Horse expected = horseService.getHorseById(horse1.getId());
+        HorseDTO expected = horseService.getHorseById(horse1.getId());
 
         //assert
         Assertions.assertEquals(expected, horse1);
@@ -101,23 +102,18 @@ public class HorseServiceTest {
     @Test
     void updateHorseTest(){
         //assign
-        Horse horseUpdate = new Horse();
+        HorseDTO horseUpdate = new HorseDTO();
 
         horseUpdate.setId(1);
         horseUpdate.setName("Wedstrijd 1 UPDATE");
         horseUpdate.setAge(LocalDate.of(2024, 4, 4));
 
-        Horse horseOld = new Horse();
-
-        horseOld.setId(1);
-        horseOld.setName("Wedstrijd 1");
-        horseOld.setAge(LocalDate.of(2024, 4, 4));
 
         //act
-        horseUpdate = horseService.updateHorse(horseUpdate);
+        boolean outcome = horseService.updateHorse(horseUpdate);
 
         //assert
-        Assertions.assertNotEquals(horseUpdate, horseOld);
+        Assertions.assertNotEquals(outcome, false);
     }
 
     @Test

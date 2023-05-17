@@ -1,5 +1,7 @@
-package com.Oefenen.Test.models;
+package com.Oefenen.Test.models.DTO;
 
+import com.Oefenen.Test.models.Horse;
+import com.Oefenen.Test.models.Rider;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Combination {
+public class CombinationDTO {
     @Id
     @GeneratedValue
     private int id;
@@ -17,7 +19,7 @@ public class Combination {
     private int userID;
 
     @OneToOne
-    private Rider rider;
+    private RiderDTO rider;
     @ManyToOne
-    private Horse horse;
+    private HorseDTO horse;
 }

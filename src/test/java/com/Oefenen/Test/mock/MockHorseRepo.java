@@ -2,6 +2,7 @@ package com.Oefenen.Test.mock;
 
 import com.Oefenen.Test.models.Enrollment;
 import com.Oefenen.Test.models.Horse;
+import com.Oefenen.Test.repositories.HorseCustomRepository;
 import com.Oefenen.Test.repositories.HorseRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class MockHorseRepo implements HorseRepository {
+public class MockHorseRepo implements HorseCustomRepository {
     public List<Horse> HorseList;
 
     public MockHorseRepo(){
@@ -177,6 +178,11 @@ public class MockHorseRepo implements HorseRepository {
 
     @Override
     public Page<Horse> findAll(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public Horse findByName(String name) {
         return null;
     }
 }

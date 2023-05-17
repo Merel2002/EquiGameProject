@@ -2,11 +2,16 @@ package com.Oefenen.Test;
 
 import com.Oefenen.Test.mock.MockCombinationRepo;
 import com.Oefenen.Test.models.*;
+import com.Oefenen.Test.models.DTO.CombinationDTO;
+import com.Oefenen.Test.models.DTO.HorseDTO;
+import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.Oefenen.Test.services.CombinationService;
+import com.Oefenen.Test.services.converters.CombinationConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
@@ -52,6 +57,7 @@ public class CombinationServiceTest {
         Combination combination1 = new Combination();
 
         combination1.setId(1);
+        combination1.setUserID(1);
         combination1.setHorse(horse1);
         combination1.setRider(rider1);
 
@@ -61,6 +67,7 @@ public class CombinationServiceTest {
         Combination combination2 = new Combination();
 
         combination2.setId(2);
+        combination2.setUserID(1);
         combination2.setHorse(horse2);
         combination2.setRider(rider1);
 
@@ -72,7 +79,7 @@ public class CombinationServiceTest {
     @Test
     void getAllCombinationsTest(){
         //assign
-        List<Combination> combinationList;
+        List<CombinationDTO> combinationList;
 
         //act
         combinationList = combinationService.getAllCombinations();
@@ -113,10 +120,10 @@ public class CombinationServiceTest {
 
 
         //act
-        Combination expected = combinationService.createCombination(combination1);
+        boolean expected = combinationService.createCombination(combination1);
 
         //assert
-        Assertions.assertEquals(expected, combination1);
+        Assertions.assertEquals(expected, true);
     }
 
     @Test
@@ -140,12 +147,13 @@ public class CombinationServiceTest {
         Combination combination1 = new Combination();
 
         combination1.setId(1);
+        combination1.setUserID(1);
         combination1.setHorse(horse1);
         combination1.setRider(rider1);
 
 
         //act
-        Combination expected = combinationService.getCombinationById(combination1.getId());
+        CombinationDTO expected = combinationService.getCombinationById(combination1.getId());
 
         //assert
         Assertions.assertEquals(expected, combination1);
@@ -175,32 +183,11 @@ public class CombinationServiceTest {
         combinationUpdate.setHorse(horseUpdate);
         combinationUpdate.setRider(riderUpdate);
 
-        //mock rider old
-        Rider riderOld = new Rider();
-
-        riderOld.setId(1);
-        riderOld.setFirstname("Henk Update");
-        riderOld.setLastname("Janssen");
-
-        //mock horse old
-        Horse horseOld = new Horse();
-
-        horseOld.setId(1);
-        horseOld.setName("Horse 1 update");
-        horseOld.setAge(LocalDate.of(2024, 4, 4));
-
-        //mock combination old
-        Combination combinationOld = new Combination();
-
-        combinationOld.setId(1);
-        combinationOld.setHorse(horseOld);
-        combinationOld.setRider(riderOld);
-
         //act
-        combinationUpdate = combinationService.updateCombination(combinationUpdate);
+        boolean succes = combinationService.updateCombination(combinationUpdate);
 
         //assert
-        Assertions.assertNotEquals(combinationOld, combinationUpdate);
+        Assertions.assertEquals(succes, true);
     }
 
     @Test
