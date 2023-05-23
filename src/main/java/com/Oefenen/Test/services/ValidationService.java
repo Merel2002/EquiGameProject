@@ -47,6 +47,18 @@ public class ValidationService {
         return valid;
     }
 
+    //checks if the given date is already over
+    public boolean dateOfBirthValidator(LocalDate date){
+        boolean valid = false;
+        LocalDate current = LocalDate.now();
+
+        if(date.compareTo(current) < 0){
+            valid = true;
+        }
+
+        return valid;
+    }
+
     public boolean riderValidator(RiderDTO riderDTO){
         boolean valid1 = false;
         boolean valid2 = false;
