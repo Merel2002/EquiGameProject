@@ -6,6 +6,7 @@ import com.Oefenen.Test.services.GameService;
 import com.Oefenen.Test.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +16,12 @@ import java.util.List;
 @RequestMapping("/api")
 public class GameController {
     @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
+    @Autowired
     private GameService gameService;
     @Autowired
     private ValidationService validationService;
+
 
     @GetMapping("/games")
     public ResponseEntity<List<GameDTO>> getAllGames(){
@@ -37,6 +41,10 @@ public class GameController {
         boolean validator = false;
         if(valid[0] && valid[1] && valid[2] && valid[3]){
             validator = gameService.createGame(gameDTO);
+        }
+
+        if(validator){
+            simpMessagingTemplate.convertAndSend("/topic/message", "Er is een nieuwe wedstrijd beschikbaar!");
         }
         return validator;
     }
