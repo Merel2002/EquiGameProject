@@ -16,10 +16,7 @@ jobs:
         # create JAR file with maven and run the package
       - name: Create the JAR file with Maven
         run: mvn package -DskipTests
-        
-        #Run static code analyses
-      - name: Run Codacy Analysis CLI
-        uses: codacy/codacy-analysis-cli-action@mast
+      
         
         #Run Unit tests
       - name: Run Unit Test
