@@ -41,6 +41,10 @@ jobs:
         run: newman run src/test/Game.postman_collection.json
       - name: Run Postman API collections rider
         run: newman run src/test/Rider.postman_collection.json
+      - name: Run Postman API collections horse
+        run: newman run src/test/Horse.postman_collection.json
+      - name: Run Postman API collections combination
+        run: newman run src/test/Combination.postman_collection.json
       - name: Run Postman API collections enrollment
         run: newman run src/test/Enrollment.postman_collection.json
          
