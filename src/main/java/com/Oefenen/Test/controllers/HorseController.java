@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/adminAPI")
 public class HorseController {
     @Autowired
     private HorseService horseService;
@@ -22,7 +22,7 @@ public class HorseController {
     @GetMapping("/horses")
     public List<HorseDTO> getAllHorses(){ return horseService.getAllHorses(); }
 
-    @PostMapping("/addHorse")
+    @PostMapping("/horses")
     public boolean addHorse(@RequestBody HorseDTO horse){
         boolean valid1 = false;
         boolean valid2 = false;
@@ -37,17 +37,17 @@ public class HorseController {
         return false;
     }
 
-    @GetMapping("/horse/{id}")
+    @GetMapping("/horses/id/{id}")
     public HorseDTO getHorseById(@PathVariable int id){ return horseService.getHorseById(id); }
 
-    @GetMapping("/horseName/{name}")
+    @GetMapping("/horses/name/{name}")
     public HorseDTO getHorseByName(@PathVariable String name){ return horseService.getHorseByName(name); }
 
-    @PutMapping("/updateHorse")
+    @PutMapping("/horses")
     public boolean updateHorse(@RequestBody HorseDTO horse){
         return horseService.updateHorse(horse);
     }
 
-    @DeleteMapping("/deleteHorse/{id}")
+    @DeleteMapping("/horses/{id}")
     public String deleteHorseById(@PathVariable int id){ return horseService.deleteHorseById(id); }
 }

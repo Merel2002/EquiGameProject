@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/adminAPI")
 public class RiderController {
     @Autowired
     private RiderService riderService;
@@ -25,7 +25,7 @@ public class RiderController {
         return ResponseEntity.ok(riderDTOS);
     }
 
-    @PostMapping("/addRider")
+    @PostMapping("/riders")
     public boolean addRider(@RequestBody CreateRiderDTO riderDTO){
         boolean valid1 = false;
         boolean valid2 = false;
@@ -40,7 +40,7 @@ public class RiderController {
         return valid;
     }
 
-    @GetMapping("/rider/{id}")
+    @GetMapping("/riders/id/{id}")
     public RiderDTO getRiderById(@PathVariable int id){
         boolean valid = false;
         valid = validationService.intValidator(id, 0);
@@ -51,7 +51,7 @@ public class RiderController {
         return null;
     }
 
-    @GetMapping("/riderName/{name}")
+    @GetMapping("/riders/name/{name}")
     public RiderDTO getRiderByName(@PathVariable String name){
         boolean valid = false;
         valid = validationService.stringValidator(name, 0, 50);
@@ -62,7 +62,7 @@ public class RiderController {
         return null;
     }
 
-    @PutMapping("/updateRider")
+    @PutMapping("/riders")
     public boolean updateRider(@RequestBody RiderDTO riderDTO){
         boolean valid1 = false;
         boolean valid2 = false;
@@ -79,7 +79,7 @@ public class RiderController {
         return valid;
     }
 
-    @DeleteMapping("/deleteRider/{id}")
+    @DeleteMapping("/riders/{id}")
     public String deleteRiderById(@PathVariable int id){
         boolean valid = false;
         valid = validationService.intValidator(id, 0);

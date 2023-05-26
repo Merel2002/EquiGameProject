@@ -1,40 +1,36 @@
 {
 	"info": {
-		"_postman_id": "1d0477ac-434d-474b-a0bb-ec43647118c8",
-		"name": "Game",
+		"_postman_id": "4adfaf9e-e150-4dc8-8576-3a26dba3aee0",
+		"name": "Combination",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25872762"
 	},
 	"item": [
 		{
-			"name": "AddGame",
+			"name": "AddCombination",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"AddGame succes post\", function(){\r",
+							"pm.test(\"AddCombinations succes post\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 500\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"pm.test(\"Response time is less than 400\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"followOriginalHttpMethod": false,
-				"strictSSL": false
-			},
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"Game_2\",\r\n    \"description\" : \"TestGame 2\",\r\n    \"date\" : \"2077-09-09\",\r\n    \"location\" : \"testlocation 2\"\r\n}",
+					"raw": "{\r\n    \"userID\":1,\r\n    \"rider\":{\r\n                \"id\":1,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse\"\r\n            },\r\n    \"horse\":{\r\n        \"id\":1,\r\n        \"name\":\"Koos\",\r\n        \"age\":\"2013-08-08\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -42,7 +38,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/games",
+					"raw": "http://localhost:9090/adminAPI/combinations",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -50,24 +46,22 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"games"
+						"combinations"
 					]
-				},
-				"description": "Hierbij probeer ik een Game aan te maken met alleen een naam maar dit lukt niet"
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "GetAllGames",
+			"name": "GetAllCombinations",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"GetAllGame succes get\", function(){\r",
+							"pm.test(\"GetAllEnrollments succes get\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"\r",
 							"\r",
 							"pm.test(\"Response time is less than 200\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
@@ -81,7 +75,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/games",
+					"raw": "http://localhost:9090/adminAPI/combinations",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -89,34 +83,25 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"games"
+						"combinations"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GetGameById",
+			"name": "GetCombinationsByUserId",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"GetGame succes get\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"The game has all properties\", function () {\r",
-							"    const responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson.id).to.be.a('number');\r",
-							"    pm.expect(responseJson.name).to.be.a('string');\r",
-							"    pm.expect(responseJson.description).to.be.a('string');\r",
-							"    pm.expect(responseJson.location).to.be.a('string');\r",
-							"    pm.expect(responseJson.date).to.be.a('string');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 200\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function (){",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -131,10 +116,15 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/games/id/1",
+					"raw": "http://localhost:9090/adminAPI/combinations/user/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -142,7 +132,46 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"games",
+						"combinations",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCombinationsById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GetEnrollment succes get\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/adminAPI/combinations/id/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"adminAPI",
+						"combinations",
 						"id",
 						"1"
 					]
@@ -151,74 +180,14 @@
 			"response": []
 		},
 		{
-			"name": "GetGameByName",
+			"name": "UpdateCombination",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"GetGame succes get\", function(){\r",
+							"pm.test(\"UpdateEnrollments succes put\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"The game has all properties\", function () {\r",
-							"    const responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson.id).to.be.a('number');\r",
-							"    pm.expect(responseJson.name).to.be.a('string');\r",
-							"    pm.expect(responseJson.description).to.be.a('string');\r",
-							"    pm.expect(responseJson.location).to.be.a('string');\r",
-							"    pm.expect(responseJson.date).to.be.a('string');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 200\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:9090/adminAPI/games/name/Indoor Breda",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"adminAPI",
-						"games",
-						"name",
-						"Indoor Breda"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateGame",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"UpdateGame succes Put\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"The game returns a boolean\", function () {\r",
-							"    const responseJson = pm.response.json();\r",
-							"    pm.expect(responseJson).to.be.a('boolean');\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Response time is less than 100\", function () {\r",
@@ -234,7 +203,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"Game_2\",\r\n    \"description\" : \"TestGame 2\",\r\n    \"date\" : \"2019-09-09\",\r\n    \"location\" : \"testlocation 2 UPDATE\"\r\n}",
+					"raw": "{\r\n    \"id\":1,\r\n    \"userID\":2,\r\n    \"rider\":{\r\n                \"firstname\": \"Maree\",\r\n                \"lastname\": \"Janssen\",\r\n                \"id\": 1\r\n            },\r\n    \"horse\":{\r\n            \"id\":1,\r\n            \"name\":\"Koos\",\r\n            \"age\":\"2013-08-08\"\r\n        }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -242,7 +211,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/games",
+					"raw": "http://localhost:9090/adminAPI/combinations",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -250,14 +219,14 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"games"
+						"combinations"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "DeleteGame",
+			"name": "DeleteCombination",
 			"event": [
 				{
 					"listen": "test",
@@ -276,7 +245,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/games/1",
+					"raw": "http://localhost:9090/adminAPI/combinations/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -284,7 +253,7 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"games",
+						"combinations",
 						"1"
 					]
 				}

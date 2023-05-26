@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/adminAPI")
 public class GameController {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
@@ -29,7 +29,7 @@ public class GameController {
         return ResponseEntity.ok(gameDTOS);
     }
 
-    @PostMapping("/addGame")
+    @PostMapping("/games")
     public boolean addGame(@RequestBody GameDTO gameDTO){
         boolean valid[] = {false, false, false, false};
 
@@ -49,7 +49,7 @@ public class GameController {
         return validator;
     }
 
-    @GetMapping("/gameid/{id}")
+    @GetMapping("/games/id/{id}")
     public ResponseEntity<GameDTO> getGameById(@PathVariable int id){
         boolean valid = false;
         valid = validationService.intValidator(id, 0);
@@ -62,7 +62,7 @@ public class GameController {
     }
 
 
-    @GetMapping("/game/{name}")
+    @GetMapping("/games/name/{name}")
     public ResponseEntity<GameDTO> getGameByName(@PathVariable String name){
         boolean valid = false;
         valid = validationService.stringValidator(name, 0, 50);
@@ -74,7 +74,7 @@ public class GameController {
         return null;
     }
 
-    @PutMapping("/updateGame")
+    @PutMapping("/games")
     public boolean updateGame(@RequestBody GameDTO gameDTO){
         boolean valid[] = {false, false, false, false, false};
 
@@ -92,14 +92,15 @@ public class GameController {
         return validator;
     }
 
-    @DeleteMapping("/deleteGame/{id}")
+    @DeleteMapping("/games/{id}")
     public String deleteGameById(@PathVariable int id){
         boolean valid = false;
+        String outcome = "Game didn't got deleted.";
         valid = validationService.intValidator(id, 0);
 
         if(valid){
-            return gameService.deleteGameById(id);
+            outcome = gameService.deleteGameById(id);
         }
-        return "Game didn't got deleted.";
+        return outcome;
     }
 }

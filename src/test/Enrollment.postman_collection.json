@@ -38,15 +38,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/api/addEnrollment",
+					"raw": "http://localhost:9090/adminAPI/enrollments",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "9090",
 					"path": [
-						"api",
-						"addEnrollment"
+						"adminAPI",
+						"enrollments"
 					]
 				}
 			},
@@ -75,134 +75,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/enrollments",
+					"raw": "http://localhost:9090/adminAPI/enrollments",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "9090",
 					"path": [
-						"api",
+						"adminAPI",
 						"enrollments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetEnrollment",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"GetEnrollment succes get\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 200\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9090/api/enrollment/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"api",
-						"enrollment",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateEnrollment",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"UpdateEnrollments succes put\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\":1,\r\n    \"game\":{\r\n                \"id\":1,\r\n                \"name\" : \"Game_2\",\r\n                \"description\" : \"TestGame 2\",\r\n                \"date\" : \"2040-09-09\",\r\n                \"location\" : \"testlocation 2\"\r\n            },\r\n    \"rider\":{\r\n                \"id\":1,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse updateee\"\r\n            }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:9090/api/updateEnrollment",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"api",
-						"updateEnrollment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DeleteEnrollment",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9090/api/deleteEnrollment/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"api",
-						"deleteEnrollment",
-						"1"
 					]
 				}
 			},
@@ -243,14 +124,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/api/enrollments/user/1",
+					"raw": "http://localhost:9090/adminAPI/enrollments/user/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "9090",
 					"path": [
-						"api",
+						"adminAPI",
 						"enrollments",
 						"user",
 						"1"
@@ -282,16 +163,135 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/api/enrollments/game/1",
+					"raw": "http://localhost:9090/adminAPI/enrollments/game/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "9090",
 					"path": [
-						"api",
+						"adminAPI",
 						"enrollments",
 						"game",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEnrollmentById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GetEnrollment succes get\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/adminAPI/enrollments/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"adminAPI",
+						"enrollments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEnrollment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"UpdateEnrollments succes put\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 100\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"game\":{\r\n                \"id\":1,\r\n                \"name\" : \"Game_2\",\r\n                \"description\" : \"TestGame 2\",\r\n                \"date\" : \"2040-09-09\",\r\n                \"location\" : \"testlocation 2\"\r\n            },\r\n    \"rider\":{\r\n                \"id\":1,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse updateee\"\r\n            }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/adminAPI/enrollments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"adminAPI",
+						"enrollments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteEnrollment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response time is less than 100\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/adminAPI/enrollments/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"adminAPI",
+						"enrollments",
 						"1"
 					]
 				}

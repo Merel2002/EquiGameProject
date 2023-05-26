@@ -1,19 +1,19 @@
 {
 	"info": {
-		"_postman_id": "55daa43a-2e71-467b-8f40-d9c732f0efae",
-		"name": "Rider",
+		"_postman_id": "b931a51d-ef84-427d-8a60-e940ccf5ff19",
+		"name": "Horse",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25872762"
 	},
 	"item": [
 		{
-			"name": "AddRider",
+			"name": "AddHorse",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"AddRider succes post\", function(){\r",
+							"pm.test(\"AddHorse succes post\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstname\":\"rider_2\",\r\n    \"lastname\":\"horse\"\r\n}",
+					"raw": "{\r\n    \"name\":\"Koos\",\r\n    \"age\":\"2013-08-08\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -39,7 +39,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/riders",
+					"raw": "http://localhost:9090/adminAPI/horses",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -47,37 +47,19 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"riders"
+						"horses"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GetAllRiders",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"GetAllRiders succes get\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "GetAllHorses",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/riders",
+					"raw": "http://localhost:9090/adminAPI/horses",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -85,28 +67,27 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"riders"
+						"horses"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GetRiderByName",
+			"name": "GetHorsesByName",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"GetRider succes get\", function(){\r",
+							"pm.test(\"GetHorse succes get\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"The rider has all properties\", function () {\r",
+							"pm.test(\"The horse has all properties\", function () {\r",
 							"    const responseJson = pm.response.json();\r",
 							"    pm.expect(responseJson.id).to.be.a('number');\r",
-							"    pm.expect(responseJson.firstname).to.be.a('string');\r",
-							"    pm.expect(responseJson.lastname).to.be.a('string');\r",
+							"    pm.expect(responseJson.name).to.be.a('string');\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Response time is less than 100\", function () {\r",
@@ -121,7 +102,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/riders/name/Maree",
+					"raw": "http://localhost:9090/adminAPI/horses/name/Koos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -129,26 +110,26 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"riders",
+						"horses",
 						"name",
-						"Maree"
+						"Koos"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "UpdateRider",
+			"name": "UpdateHorse",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"UpdateRider succes put\", function(){\r",
+							"pm.test(\"UpdateHorse succes put\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"The rider has to return a boolean\", function () {\r",
+							"pm.test(\"The horse has to return a boolean\", function () {\r",
 							"    const responseJson = pm.response.json();\r",
 							"    pm.expect(responseJson).to.be.a('boolean');\r",
 							"});\r",
@@ -166,7 +147,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"1\",\r\n    \"firstname\":\"rider_1\",\r\n    \"lastname\":\"horse UPDATE\"\r\n}",
+					"raw": "{\r\n    \"id\":\"1\",\r\n    \"name\":\"rider_1\",\r\n    \"age\":\"2010-10-10\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -174,27 +155,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/api/riders",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "9090",
-					"path": [
-						"api",
-						"riders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getRiderById",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:9090/adminAPI/riders/id/1",
+					"raw": "http://localhost:9090/adminAPI/horses",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -202,7 +163,27 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"riders",
+						"horses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getHorseById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/adminAPI/horses/id/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"adminAPI",
+						"horses",
 						"id",
 						"1"
 					]
@@ -211,7 +192,7 @@
 			"response": []
 		},
 		{
-			"name": "DeleteRider",
+			"name": "DeleteHorse",
 			"event": [
 				{
 					"listen": "test",
@@ -235,7 +216,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/riders/1",
+					"raw": "http://localhost:9090/adminAPI/horses/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -243,7 +224,7 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"riders",
+						"horses",
 						"1"
 					]
 				}

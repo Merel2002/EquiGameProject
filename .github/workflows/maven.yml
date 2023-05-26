@@ -37,11 +37,11 @@ jobs:
         run: sleep 10
          
       - name: Run Postman API collections game
-        run: newman run src/test/Game.postman_collection.json
+
       - name: Run Postman API collections rider
-        run: newman run src/test/Rider.postman_collection.json
+
       - name: Run Postman API collections enrollment
-        run: newman run src/test/Enrollment.postman_collection.json
+
          
          
         

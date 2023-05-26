@@ -67,6 +67,9 @@ public class GameService {
         return false;
     }
 
-    public String deleteGameById(int id){ gameRepository.deleteById(id); return "Game got deleted."; }
+    public String deleteGameById(int id){
+        gameRepository.deleteById(id);
+        return "Game got deleted.";
+    }
 
 }

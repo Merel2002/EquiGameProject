@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/adminAPI")
 public class CombinationController {
     @Autowired
     private CombinationService combinationService;
@@ -19,20 +19,20 @@ public class CombinationController {
     @GetMapping("/combinations")
     public List<CombinationDTO> getAllCombination(){ return combinationService.getAllCombinations(); }
 
-    @PostMapping("/addCombinations")
+    @PostMapping("/combinations")
     public boolean addCombination(@RequestBody Combination combinations){ return combinationService.createCombination(combinations); }
 
-    @GetMapping("/combination/{id}")
+    @GetMapping("/combinations/id/{id}")
     public CombinationDTO getCombinationById(@PathVariable int id){ return combinationService.getCombinationById(id); }
 
-    @GetMapping("/combinationsByUser/{userid}")
+    @GetMapping("/combinations/user/{id}")
     public List<CombinationDTO> getCombinationsByUserId(@PathVariable int id){
         return combinationService.getCombinationByUserId(id);
     }
 
-    @PutMapping("/updateCombinations")
+    @PutMapping("/combinations")
     public boolean updateCombination(@RequestBody Combination combinations){ return combinationService.updateCombination(combinations); }
 
-    @DeleteMapping("/deleteCombination/{id}")
+    @DeleteMapping("/combinations/{id}")
     public String deleteCombinationById(@PathVariable int id){ return combinationService.deleteCombinationById(id); }
 }
