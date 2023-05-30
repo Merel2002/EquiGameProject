@@ -7,15 +7,16 @@
 	},
 	"item": [
 		{
-			"name": "GetAllCombinations",
+			"name": "AddRider",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"GetAllEnrollments succes get\", function(){\r",
+							"pm.test(\"AddRider succes post\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
+							"\r",
 							"\r",
 							"pm.test(\"Response time is less than 200\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
@@ -26,10 +27,19 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\":\"rider_2\",\r\n    \"lastname\":\"horse\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:9090/adminAPI/combinations",
+					"raw": "http://localhost:9090/adminAPI/riders",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -37,7 +47,54 @@
 					"port": "9090",
 					"path": [
 						"adminAPI",
-						"combinations"
+						"riders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddHorse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"AddHorse succes post\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Koos\",\r\n    \"age\":\"2013-08-08\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/adminAPI/horses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"adminAPI",
+						"horses"
 					]
 				}
 			},
@@ -61,13 +118,50 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userID\":1,\r\n    \"rider\":{\r\n                \"id\":1,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse\"\r\n            },\r\n    \"horse\":{\r\n        \"id\":1,\r\n        \"name\":\"Koos\",\r\n        \"age\":\"2013-08-08\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"userID\":1,\r\n    \"rider\":{\r\n                \"id\":2,\r\n                \"firstname\":\"rider_2\",\r\n                \"lastname\":\"horse\"\r\n            },\r\n    \"horse\":{\r\n        \"id\":2,\r\n        \"name\":\"Koos\",\r\n        \"age\":\"2013-08-08\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
+				"url": {
+					"raw": "http://localhost:9090/adminAPI/combinations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"adminAPI",
+						"combinations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllCombinations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GetAllEnrollments succes get\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "http://localhost:9090/adminAPI/combinations",
 					"protocol": "http",
