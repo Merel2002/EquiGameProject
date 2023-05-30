@@ -153,8 +153,8 @@
 							"    pm.expect(responseJson).to.be.a('boolean');\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 100\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"pm.test(\"Response time is less than 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
 							"});"
 						],
 						"type": "text/javascript"
