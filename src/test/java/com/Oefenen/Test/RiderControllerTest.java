@@ -35,7 +35,7 @@ public class RiderControllerTest {
     {
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .get("/api/riders")
+                            .get("/adminAPI/riders")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -57,7 +57,7 @@ public class RiderControllerTest {
     public void getRiderByIdTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/api/rider/{id}", 1)
+                            .get("/adminAPI/rider/id/{id}", 1)
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -71,7 +71,7 @@ public class RiderControllerTest {
     public void getRiderByNameTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/api/riderName/{name}", "Henk")
+                            .get("/adminAPI/riders/name/{name}", "Henk")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -85,7 +85,7 @@ public class RiderControllerTest {
     public void addRiderTest(){
         try {
             mvc.perform(MockMvcRequestBuilders
-                            .post("/api/addRider")
+                            .post("/adminAPI/riders")
                             .content(asJsonString(new CreateRiderDTO("Henk", "Janssen")))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
@@ -99,7 +99,7 @@ public class RiderControllerTest {
     public void updateRiderTest(){
         try {
             mvc.perform(MockMvcRequestBuilders
-                            .put("/api/updateRider")
+                            .put("/adminAPI/riders")
                             .content(asJsonString(new RiderDTO(1,"Trudy", "Janssen")))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
@@ -112,7 +112,7 @@ public class RiderControllerTest {
     @Test
     public void deleteRiderTest(){
         try {
-            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/api/deleteRider/{id}", 1))
+            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/adminAPI/riders/{id}", 1))
                     .andExpect(status().isAccepted())
                     .andReturn();
 

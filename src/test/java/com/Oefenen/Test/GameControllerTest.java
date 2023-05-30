@@ -33,7 +33,7 @@ public class GameControllerTest {
     {
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .get("/api/games")
+                            .get("/adminAPI/games")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -57,7 +57,7 @@ public class GameControllerTest {
     public void getGameByIdTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/api/gameid/{id}", 1)
+                            .get("/adminAPI/games/id/{id}", 1)
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -71,7 +71,7 @@ public class GameControllerTest {
     public void getGameByNameTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/api/game/{name}", "Game1")
+                            .get("/adminAPI/games/name/{name}", "Game1")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -85,7 +85,7 @@ public class GameControllerTest {
     public void addGameTest(){
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .post("/api/addGame")
+                            .post("/adminAPI/games")
                             .content(asJsonString(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, -9))))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
@@ -109,7 +109,7 @@ public class GameControllerTest {
     public void updateGameTest(){
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .put("/api/updateGame")
+                            .put("/adminAPI/games")
                             .content(asJsonString(new GameDTO(1,"Springwedstrijd", "Testwedstrijd", LocalDate.of(2090, 9, -9), "Bavel")))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
@@ -128,7 +128,7 @@ public class GameControllerTest {
     @Test
     public void deleteGameTest(){
         try {
-            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/api/deleteGame/{id}", 1))
+            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/adminAPI/games/{id}", 1))
                     .andExpect(status().isAccepted())
                     .andReturn();
 

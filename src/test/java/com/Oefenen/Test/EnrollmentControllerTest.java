@@ -38,7 +38,7 @@ public class EnrollmentControllerTest {
     {
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .get("/api/enrollments")
+                            .get("/adminAPI/enrollments")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -61,7 +61,7 @@ public class EnrollmentControllerTest {
     public void addEnrollmentTest(){
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .post("/api/addEnrollment")
+                            .post("/adminAPI/enrollments")
                             .content(asJsonString(new EnrollmentDTO(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, -9)), new RiderDTO("Henk", "Janssen"))))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
@@ -80,7 +80,7 @@ public class EnrollmentControllerTest {
     public void getEnrollmentById(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/api/enrollment/{id}", 1)
+                            .get("/adminAPI/enrollments/{id}", 1)
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -89,56 +89,56 @@ public class EnrollmentControllerTest {
 
         }
     }
-//    @Test
-//    public void getAllEnrollmentsByRiderId(){
-//        try{
-//            MvcResult result = mvc.perform( MockMvcRequestBuilders
-//                            .get("/api/enrollment/user/{id}", 1)
-//                            .accept(MediaType.APPLICATION_JSON))
-//                    .andDo(print())
-//                    .andExpect(status().isOk())
-//                    .andReturn();
-//
-//            String Jsonresult = result.getResponse().getContentAsString();
-//            List<EnrollmentDTO> enrollmentDTOS = new ObjectMapper().readValue(Jsonresult, new TypeReference<List<EnrollmentDTO>>(){});
-//            for(EnrollmentDTO value: enrollmentDTOS){
-//                Assertions.assertNotNull(value.getId());
-//                Assertions.assertNotNull(value.getGame());
-//                Assertions.assertEquals(value.getRider().getId(), 1);
-//            }
-//
-//
-//        }catch(Exception ex){
-//
-//        }
-//    }
-//    @Test
-//    public void getAllEnrollmentsByGameId(){
-//        try{
-//            MvcResult result = mvc.perform( MockMvcRequestBuilders
-//                            .get("/api/enrollment/game/{id}", 1)
-//                            .accept(MediaType.APPLICATION_JSON))
-//                    .andDo(print())
-//                    .andExpect(status().isOk())
-//                    .andReturn();
-//
-//            String Jsonresult = result.getResponse().getContentAsString();
-//            List<EnrollmentDTO> enrollmentDTOS = new ObjectMapper().readValue(Jsonresult, new TypeReference<List<EnrollmentDTO>>(){});
-//            for(EnrollmentDTO value: enrollmentDTOS){
-//                Assertions.assertNotNull(value.getId());
-//                Assertions.assertNotNull(value.getRider());
-//                Assertions.assertEquals(value.getGame().getId(), 1);
-//            }
-//        }catch(Exception ex){
-//
-//        }
-//    }
+    @Test
+    public void getAllEnrollmentsByRiderId(){
+        try{
+            MvcResult result = mvc.perform( MockMvcRequestBuilders
+                            .get("/adminAPI/enrollments/user/{id}", 1)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andReturn();
+
+            String Jsonresult = result.getResponse().getContentAsString();
+            List<EnrollmentDTO> enrollmentDTOS = new ObjectMapper().readValue(Jsonresult, new TypeReference<List<EnrollmentDTO>>(){});
+            for(EnrollmentDTO value: enrollmentDTOS){
+                Assertions.assertNotNull(value.getId());
+                Assertions.assertNotNull(value.getGame());
+                Assertions.assertEquals(value.getRider().getId(), 1);
+            }
+
+
+        }catch(Exception ex){
+
+        }
+    }
+    @Test
+    public void getAllEnrollmentsByGameId(){
+        try{
+            MvcResult result = mvc.perform( MockMvcRequestBuilders
+                            .get("/adminAPI/enrollments/game/{id}", 1)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andReturn();
+
+            String Jsonresult = result.getResponse().getContentAsString();
+            List<EnrollmentDTO> enrollmentDTOS = new ObjectMapper().readValue(Jsonresult, new TypeReference<List<EnrollmentDTO>>(){});
+            for(EnrollmentDTO value: enrollmentDTOS){
+                Assertions.assertNotNull(value.getId());
+                Assertions.assertNotNull(value.getRider());
+                Assertions.assertEquals(value.getGame().getId(), 1);
+            }
+        }catch(Exception ex){
+
+        }
+    }
 
     @Test
     public void updateEnrollmentTest(){
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .post("/api/updateEnrollment")
+                            .post("/adminAPI/enrollments")
                             .content(asJsonString(new EnrollmentDTO(1, new GameDTO(1, "Springwedstrijd", "Testwedstrijd",  LocalDate.of(2090, 9, -9), "Bavel"), new RiderDTO(1,"Henk", "Janssen"))))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
@@ -156,7 +156,7 @@ public class EnrollmentControllerTest {
 //    @Test
 //    public void deleteEnrollmentTest(){
 //        try {
-//            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/api/deleteEnrollment/{id}", 1))
+//            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/adminAPI/enrollments/{id}", 1))
 //                    .andExpect(status().isAccepted())
 //                    .andReturn();
 //
