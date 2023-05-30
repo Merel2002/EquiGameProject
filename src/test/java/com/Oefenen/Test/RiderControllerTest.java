@@ -57,7 +57,7 @@ public class RiderControllerTest {
     public void getRiderByIdTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/adminAPI/rider/id/{id}", 1)
+                            .get("/adminAPI/riders/id/{id}", 1)
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())

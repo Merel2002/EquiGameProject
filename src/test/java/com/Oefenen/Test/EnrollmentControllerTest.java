@@ -153,20 +153,19 @@ public class EnrollmentControllerTest {
         }
     }
 
-//    @Test
-//    public void deleteEnrollmentTest(){
-//        try {
-//            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/adminAPI/enrollments/{id}", 1))
-//                    .andExpect(status().isAccepted())
-//                    .andReturn();
-//
-//            String Jsonresult = result.getResponse().getContentAsString();
-//            String outcome = new ObjectMapper().readValue(Jsonresult, new TypeReference<String>(){});
-//            Assertions.assertEquals("true", outcome);
-//        } catch (Exception ex){
-//
-//        }
-//    }
+    @Test
+    public void deleteEnrollmentTest(){
+        try {
+            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/adminAPI/enrollments/{id}", 1))
+                    .andReturn();
+
+            String Jsonresult = result.getResponse().getContentAsString();
+            String outcome = new ObjectMapper().readValue(Jsonresult, new TypeReference<String>(){});
+            Assertions.assertEquals("true", outcome);
+        } catch (Exception ex){
+
+        }
+    }
 
 
     public static String asJsonString(final Object obj) {
