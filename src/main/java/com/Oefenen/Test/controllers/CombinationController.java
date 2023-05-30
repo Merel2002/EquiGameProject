@@ -20,10 +20,14 @@ public class CombinationController {
     public List<CombinationDTO> getAllCombination(){ return combinationService.getAllCombinations(); }
 
     @PostMapping("/combinations")
-    public boolean addCombination(@RequestBody Combination combinations){ return combinationService.createCombination(combinations); }
+    public boolean addCombination(@RequestBody Combination combinations){
+        return combinationService.createCombination(combinations);
+    }
 
     @GetMapping("/combinations/id/{id}")
-    public CombinationDTO getCombinationById(@PathVariable int id){ return combinationService.getCombinationById(id); }
+    public CombinationDTO getCombinationById(@PathVariable int id){
+        return combinationService.getCombinationById(id);
+    }
 
     @GetMapping("/combinations/user/{id}")
     public List<CombinationDTO> getCombinationsByUserId(@PathVariable int id){

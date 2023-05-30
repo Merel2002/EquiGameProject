@@ -2,10 +2,6 @@ package com.Oefenen.Test.services.converters;
 
 import com.Oefenen.Test.models.Combination;
 import com.Oefenen.Test.models.DTO.CombinationDTO;
-import com.Oefenen.Test.models.DTO.EnrollmentDTO;
-import com.Oefenen.Test.models.Enrollment;
-import com.Oefenen.Test.models.Rider;
-
 public class CombinationConverter {
 
     private RiderConverter riderConverter = new RiderConverter();
