@@ -19,4 +19,9 @@ public class HorseDTO {
     private int id;
     private String name;
     private LocalDate age;
+
+    public HorseDTO(String _name, LocalDate _age){
+        this.name = _name;
+        this.age = _age;
+    }
 }

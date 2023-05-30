@@ -2,6 +2,7 @@ package com.Oefenen.Test;
 
 import com.Oefenen.Test.models.Enrollment;
 import com.Oefenen.Test.models.Game;
+import com.Oefenen.Test.models.Horse;
 import com.Oefenen.Test.models.Rider;
 import com.Oefenen.Test.repositories.EnrollmentRepository;
 import com.Oefenen.Test.repositories.GameRepository;
@@ -32,6 +33,7 @@ public class TestApplication{
 		return args -> {
 			Game game = new Game("Indoor Breda", "Indoor Breda is een meerdaagse springwedstrijd in Breda", "Breda", LocalDate.of(2024, 9, 9));
 			Rider rider = new Rider("Maree", "Janssen");
+			Horse horse = new Horse("In time", LocalDate.of(2010, 9, 9));
 			gameRepository.save(game);
 			riderRepository.save(rider);
 			enrollmentRepository.save(new Enrollment(game, rider));

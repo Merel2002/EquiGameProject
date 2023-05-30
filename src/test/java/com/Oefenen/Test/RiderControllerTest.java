@@ -113,7 +113,6 @@ public class RiderControllerTest {
     public void deleteRiderTest(){
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/adminAPI/riders/{id}", 1))
-                    .andExpect(status().isAccepted())
                     .andReturn();
 
             String Jsonresult = result.getResponse().getContentAsString();

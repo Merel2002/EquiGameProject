@@ -1,6 +1,9 @@
 package com.Oefenen.Test;
 
+import com.Oefenen.Test.models.DTO.CreateRiderDTO;
 import com.Oefenen.Test.models.DTO.GameDTO;
+import com.Oefenen.Test.models.DTO.HorseDTO;
+import com.Oefenen.Test.models.DTO.RiderDTO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -24,29 +27,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Tag("IntegrationTest")
-public class GameControllerTest {
+public class HorseControllerTest {
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void getAllGamesTest()
+    public void getAllHorsesTest()
     {
         try {
             MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .get("/adminAPI/games")
+                            .get("/adminAPI/horses")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
-                     .andReturn();
+                    .andReturn();
 
             String jsonResult = result.getResponse().getContentAsString();
-            List<GameDTO> gameDTOS = new ObjectMapper().readValue(jsonResult, new TypeReference<List<GameDTO>>(){});
-            for(GameDTO value: gameDTOS){
+            List<HorseDTO> horseDTOS = new ObjectMapper().readValue(jsonResult, new TypeReference<List<HorseDTO>>(){});
+            for(HorseDTO value: horseDTOS){
                 Assertions.assertNotNull(value.getName());
+                Assertions.assertNotNull(value.getAge());
                 Assertions.assertNotNull(value.getId());
-                Assertions.assertNotNull(value.getDate());
-                Assertions.assertNotNull(value.getLocation());
-                Assertions.assertNotNull(value.getDescription());
             }
 
         }catch (Exception ex){
@@ -54,10 +55,10 @@ public class GameControllerTest {
     }
 
     @Test
-    public void getGameByIdTest(){
+    public void getHorseByIdTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/adminAPI/games/id/{id}", 1)
+                            .get("/adminAPI/horses/id/{id}", 1)
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
@@ -68,72 +69,57 @@ public class GameControllerTest {
     }
 
     @Test
-    public void getGameByNameTest(){
+    public void getHorseByNameTest(){
         try{
             mvc.perform( MockMvcRequestBuilders
-                            .get("/adminAPI/games/name/{name}", "Game1")
+                            .get("/adminAPI/horses/name/{name}", "In time")
                             .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
-                    .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Game1"));
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("In time"));
         }catch(Exception ex){
 
         }
     }
 
     @Test
-    public void addGameTest(){
+    public void addHorseTest(){
         try {
-            MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .post("/adminAPI/games")
-                            .content(asJsonString(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, -9))))
+            mvc.perform(MockMvcRequestBuilders
+                            .post("/adminAPI/horses")
+                            .content(asJsonString(new HorseDTO("In time", LocalDate.of(2010, 9, 9))))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk())
-                    .andReturn();
-
-            Boolean Json = result.equals(true);
-
-            Assertions.assertEquals(true, Json);
-
-//            String Jsonresult = result.getResponse().getContentAsString();
-//            String outcome = new ObjectMapper().readValue(Jsonresult, new TypeReference<String>(){});
-//            Assertions.assertEquals("true", outcome);
-
+                    .andExpect(status().isOk());
         } catch (Exception ex){
 
         }
     }
 
     @Test
-    public void updateGameTest(){
+    public void updateHorseTest(){
         try {
-            MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .put("/adminAPI/games")
-                            .content(asJsonString(new GameDTO(1,"Springwedstrijd", "Testwedstrijd", LocalDate.of(2090, 9, -9), "Bavel")))
+            mvc.perform(MockMvcRequestBuilders
+                            .put("/adminAPI/horses")
+                            .content(asJsonString(new HorseDTO(1,"Koos", LocalDate.of(2010, 9, 9))))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk())
-                    .andReturn();
-
-            Boolean Json = result.equals(true);
-
-            Assertions.assertEquals(true, Json);
-
+                    .andExpect(status().isOk());
         } catch (Exception ex){
 
         }
     }
 
     @Test
-    public void deleteGameTest(){
+    public void deleteHorseTest(){
         try {
-            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/adminAPI/games/{id}", 1))
+            MvcResult result = mvc.perform(MockMvcRequestBuilders.delete("/adminAPI/horses/{id}", 1))
                     .andReturn();
 
             String Jsonresult = result.getResponse().getContentAsString();
             String outcome = new ObjectMapper().readValue(Jsonresult, new TypeReference<String>(){});
             Assertions.assertEquals("true", outcome);
+
         } catch (Exception ex){
 
         }
