@@ -18,6 +18,7 @@ public class Enrollment {
 
     @OneToOne
     private Rider rider;
+
     //@OneToOne
     //private Combination combination;
 
