@@ -17,13 +17,7 @@ jobs:
         # create JAR file with maven and run the package
       - name: Create the JAR file with Maven
         run: mvn package -DskipTests
-        
- job2:
-   name: Run Unit and Integration tests
-   needs: job1
-   runs-on: ubuntu-latest
-   
-   steps:
+
         #Run Unit tests
       - name: Run Unit Test
         run: mvn test -Dgroups="UnitTest"
@@ -32,9 +26,9 @@ jobs:
       - name: Run Integration Test
         run: mvn test -Dgroups="IntegrationTest"
         
- job3:
+ job2:
    name: Start application and API tests
-   needs: [job1, job2]
+   needs: job1
    runs-on: ubuntu-latest
    
    steps:  
@@ -60,9 +54,9 @@ jobs:
       - name: Run Postman API collections enrollment
         run: newman run src/test/Enrollment.postman_collection.json
         
- job4:
+ job3:
    name: Install, build and push docker
-   needs: [job1, job2, job3]
+   needs: [job1, job2]
    runs-on: ubuntu-latest
    
    steps:  
