@@ -47,9 +47,9 @@ jobs:
       - name: Run Postman API collections enrollment
         run: newman run src/test/Enrollment.postman_collection.json
 
-  job3:
+  job2:
     name: Docker
-    needs: job2
+    needs: job1
     runs-on: ubuntu-latest
 
     steps:
