@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   job1:
-    name: Start up and test
+    name: Set up, test, start up and push to docker
     runs-on: ubuntu-latest
 
     steps:
