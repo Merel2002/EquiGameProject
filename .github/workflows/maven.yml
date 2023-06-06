@@ -72,6 +72,3 @@ jobs:
       - name: Log out from Dockerhub
         run: docker logout https://hub.docker.com/
             
-         
-        
-        
