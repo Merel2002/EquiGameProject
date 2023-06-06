@@ -10,8 +10,6 @@ COPY pom.xml .
 # Resolve Maven dependencies
 RUN mvn dependency:go-offline -B
 
-
-
 # Copy the application source code
 COPY src ./src
 
@@ -19,4 +17,4 @@ COPY src ./src
 RUN mvn package -DskipTests
 
 # Set the entry point for the container
-ENTRYPOINT ["java", "-jar", "target\Test-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "target/EquiGame-0.0.1-SNAPSHOT.jar"]
