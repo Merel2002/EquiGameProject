@@ -1,12 +1,13 @@
-name: Java CI
+name: Java CI/CD
 
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+ job1:
+  name: Set up CI/CD
+  runs-on: ubuntu-latest
 
-    steps:
+  steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
@@ -17,6 +18,12 @@ jobs:
       - name: Create the JAR file with Maven
         run: mvn package -DskipTests
         
+ job2:
+   name: Run Unit and Integration tests
+   needs: job1
+   runs-on: ubuntu-latest
+   
+   steps:
         #Run Unit tests
       - name: Run Unit Test
         run: mvn test -Dgroups="UnitTest"
@@ -25,6 +32,12 @@ jobs:
       - name: Run Integration Test
         run: mvn test -Dgroups="IntegrationTest"
         
+ job3:
+   name: Start application and API tests
+   needs: job1
+   runs-on: ubuntu-latest
+   
+   steps:  
       # Install newman
       - name: Install newman
         run: | 
@@ -47,6 +60,12 @@ jobs:
       - name: Run Postman API collections enrollment
         run: newman run src/test/Enrollment.postman_collection.json
         
+ job4:
+   name: Install, build and push docker
+   needs: job1
+   runs-on: ubuntu-latest
+   
+   steps:  
       - name: Install Docker Buildx
         uses: docker/setup-buildx-action@v1
         
