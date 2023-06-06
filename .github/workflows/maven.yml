@@ -47,12 +47,6 @@ jobs:
       - name: Run Postman API collections enrollment
         run: newman run src/test/Enrollment.postman_collection.json
 
-  job2:
-    name: Docker
-    needs: job1
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Install Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -74,86 +68,6 @@ jobs:
 
 
 
-# name: Java CI/CD
-
-# on: [push]
-
-# jobs:
-#  job1:
-#   name: Set up CI/CD
-#   runs-on: ubuntu-latest
-
-#   steps:
-#       - uses: actions/checkout@v3
-#       - uses: actions/setup-java@v3
-#         with:
-#           java-version: '17'
-#           distribution: 'temurin'
-          
-#         # create JAR file with maven and run the package
-#       - name: Create the JAR file with Maven
-#         run: mvn package -DskipTests
-
-#         #Run Unit tests
-#       - name: Run Unit Test
-#         run: mvn test -Dgroups="UnitTest"
-        
-#         #Run Integration tests
-#       - name: Run Integration Test
-#         run: mvn test -Dgroups="IntegrationTest"
-        
-#  job2:
-#    name: Start application and API tests
-#    needs: job1
-#    runs-on: ubuntu-latest
-   
-#    steps:  
-#       # Install newman
-#       - name: Install newman
-#         run: | 
-#          npm install -g newman
-#          npm install -g newman-reporter-htmlextra
-         
-#       - name: Start applicatie
-#         run: nohup mvn spring-boot:run > /dev/null 2>&1 &
-#       - name: Wait 10 seconds so the application is ready
-#         run: sleep 10
-         
-#       - name: Run Postman API collections game
-#         run: newman run src/test/Game.postman_collection.json
-#       - name: Run Postman API collections rider
-#         run: newman run src/test/Rider.postman_collection.json
-#       - name: Run Postman API collections horse
-#         run: newman run src/test/Horse.postman_collection.json
-#       - name: Run Postman API collections combination
-#         run: newman run src/test/Combination.postman_collection.json
-#       - name: Run Postman API collections enrollment
-#         run: newman run src/test/Enrollment.postman_collection.json
-        
-#  job3:
-#    name: Install, build and push docker
-#    needs: [job1, job2]
-#    runs-on: ubuntu-latest
-   
-#    steps:  
-#       - name: Install Docker Buildx
-#         uses: docker/setup-buildx-action@v1
-        
-#       - name: Login to Dockerhub
-#         uses: docker/login-action@v1
-#         with:
-#           username: ${{ secrets.DOCKER_USERNAME }}
-#           password: ${{ secrets.DOCKER_PASSWORD }}
-      
-#       - name: Build and push Docker image
-#         uses: docker/build-push-action@v2
-#         with:
-#             context: .
-#             push: true
-#             tags: merel2002/equigame:latestversion
-
-#       - name: Log out from Dockerhub
-#         run: docker logout https://hub.docker.com/
          
          
         
