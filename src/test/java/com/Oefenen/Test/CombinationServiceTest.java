@@ -123,7 +123,7 @@ public class CombinationServiceTest {
         boolean expected = combinationService.createCombination(combination1);
 
         //assert
-        Assertions.assertEquals(expected, true);
+        Assertions.assertEquals(true, expected);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class CombinationServiceTest {
         boolean succes = combinationService.updateCombination(combinationUpdate);
 
         //assert
-        Assertions.assertEquals(succes, true);
+        Assertions.assertEquals(true, succes);
     }
 
     @Test
@@ -199,6 +199,6 @@ public class CombinationServiceTest {
         outcome = combinationService.deleteCombinationById(1);
 
         //assert
-        Assertions.assertEquals(outcome, "Combination got deleted");
+        Assertions.assertEquals("Combination got deleted", outcome);
     }
 }
