@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.Oefenen</groupId>
-	<artifactId>Test</artifactId>
+	<artifactId>EquiGame</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Test</name>
 	<description>Oefen project for Spring Boot</description>
