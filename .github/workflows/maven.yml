@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   job1:
-    name: Start up
+    name: Start up and test
     runs-on: ubuntu-latest
 
     steps:
@@ -20,12 +20,6 @@ jobs:
       - name: Create the JAR file with Maven
         run: mvn package -DskipTests
 
-  job2:
-    name: Run tests and start up
-    needs: job1
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Run Unit Test
         run: mvn test -Dgroups="UnitTest"
 
