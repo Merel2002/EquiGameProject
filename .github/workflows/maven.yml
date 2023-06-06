@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   job1:
+    name: Start up
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +21,7 @@ jobs:
         run: mvn package -DskipTests
 
   job2:
+    name: Run tests and start up
     needs: job1
     runs-on: ubuntu-latest
 
@@ -52,6 +54,7 @@ jobs:
         run: newman run src/test/Enrollment.postman_collection.json
 
   job3:
+    name: Docker
     needs: job2
     runs-on: ubuntu-latest
 
@@ -74,8 +77,6 @@ jobs:
 
       - name: Log out from Dockerhub
         run: docker logout https://hub.docker.com/
-
-
 
 
 
