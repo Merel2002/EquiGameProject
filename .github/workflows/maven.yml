@@ -34,7 +34,7 @@ jobs:
         
  job3:
    name: Start application and API tests
-   needs: job1
+   needs: [job1, job2]
    runs-on: ubuntu-latest
    
    steps:  
@@ -62,7 +62,7 @@ jobs:
         
  job4:
    name: Install, build and push docker
-   needs: job1
+   needs: [job1, job2, job3]
    runs-on: ubuntu-latest
    
    steps:  
