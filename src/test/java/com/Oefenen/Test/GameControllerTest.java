@@ -84,29 +84,19 @@ public class GameControllerTest {
 
     @Test
     public void addGameTest(){
-//        try {
-//            MvcResult result = mvc.perform(MockMvcRequestBuilders
-//                            .post("/adminAPI/games")
-//                            .content(asJsonString(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, -9))))
-//                            .contentType(MediaType.APPLICATION_JSON)
-//                            .accept(MediaType.APPLICATION_JSON))
-//                    .andExpect(status().isOk())
-//                    .andReturn();
-//
-//            Boolean Json = result.equals(true);
-//
-//            Assertions.assertEquals(true, Json);
-//
-//        } catch (Exception ex){
-//
-//        }
         try{
-            mvc.perform(MockMvcRequestBuilders
+            MvcResult result = mvc.perform(MockMvcRequestBuilders
                     .post("/adminAPI/games")
                     .content(asJsonString(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, 9))))
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk());
+                    .andExpect(status().isOk())
+                    .andReturn();
+
+            Boolean Json = result.equals(true);
+
+            Assertions.assertEquals(true, Json);
+
         } catch (Exception ex){
 
         }
