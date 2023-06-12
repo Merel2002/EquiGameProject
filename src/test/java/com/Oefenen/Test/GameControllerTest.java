@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import javax.print.attribute.standard.Media;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -83,23 +84,29 @@ public class GameControllerTest {
 
     @Test
     public void addGameTest(){
-        try {
-            MvcResult result = mvc.perform(MockMvcRequestBuilders
-                            .post("/adminAPI/games")
-                            .content(asJsonString(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, -9))))
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(status().isOk())
-                    .andReturn();
-
-            Boolean Json = result.equals(true);
-
-            Assertions.assertEquals(true, Json);
-
-//            String Jsonresult = result.getResponse().getContentAsString();
-//            String outcome = new ObjectMapper().readValue(Jsonresult, new TypeReference<String>(){});
-//            Assertions.assertEquals("true", outcome);
-
+//        try {
+//            MvcResult result = mvc.perform(MockMvcRequestBuilders
+//                            .post("/adminAPI/games")
+//                            .content(asJsonString(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, -9))))
+//                            .contentType(MediaType.APPLICATION_JSON)
+//                            .accept(MediaType.APPLICATION_JSON))
+//                    .andExpect(status().isOk())
+//                    .andReturn();
+//
+//            Boolean Json = result.equals(true);
+//
+//            Assertions.assertEquals(true, Json);
+//
+//        } catch (Exception ex){
+//
+//        }
+        try{
+            mvc.perform(MockMvcRequestBuilders
+                    .post("/adminAPI/games")
+                    .content(asJsonString(new GameDTO("Springwedstrijd", "Testwedstrijd", "Bavel", LocalDate.of(2090, 9, 9))))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
         } catch (Exception ex){
 
         }
